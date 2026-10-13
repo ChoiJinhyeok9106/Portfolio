@@ -282,7 +282,7 @@ table.mx{width:100%;min-width:760px;border-collapse:collapse;font-size:12.5px}
             <li>ERP 전자결재와 이어지는 불용처리 흐름 신설, SAP 실패 시 RFID 미반영 원칙 통일</li>
             <li>엔드포인트 443개 권한 점검, 실시간 로그 뷰어(SSE), 운영자 매뉴얼 v2.5</li>
           </ul>
-          <dl class="fix"><span class="q">이력 테이블 580만 행 누적</span><dt>원인</dt><dd>파일에 없는 컬럼이 비교 키에 포함돼 전 행이 변경으로 판정</dd><dt>조치</dt><dd>비교 키 정리, 신규·수정·동일·실패 4분류 집계</dd></dl>
+          <dl class="fix"><span class="q">이력 테이블 580만 행 누적</span><dt>원인</dt><dd>AS-IS의 매일 전건 적재 + To-Be에서도 파일에 없는 컬럼이 비교 키에 포함돼 전 행이 변경으로 판정</dd><dt>조치</dt><dd>비교 키 정리, 신규·수정·동일·실패 4분류 집계</dd></dl>
           <div class="chips"><span class="chip">Java 17</span><span class="chip">eGovFrame 4.2</span><span class="chip">Oracle RAC</span><span class="chip">Quartz</span><span class="chip">JSch</span><span class="chip">SAP API GW</span></div>
         </div>
       </article>
@@ -338,13 +338,13 @@ table.mx{width:100%;min-width:760px;border-collapse:collapse;font-size:12.5px}
           <div class="meta"><span>2025.08 – 2026.10</span><span>커밋 161 (외부망 80% · 내부망 100%)</span></div>
         </div>
         <div class="fp-kpi">
-          <div><b>2.6→4.2</b><span>eGovFrame, iBATIS → MyBatis</span></div>
+          <div><b>2.6→4.2</b><span>외부망 eGovFrame, iBATIS → MyBatis</span></div>
           <div><b>68개</b><span>레거시 관리자 경로 차단</span></div>
           <div><b>474건</b><span>미수집 계약 규명·재수집</span></div>
         </div>
         <div class="fp-body">
           <ul>
-            <li>망 간 연계 재설계: SHA-256 변경 감지 + Outbox 패턴(재시도·백오프)</li>
+            <li>망 간 연계 재설계: SHA-256 변경 감지 + Outbox 패턴(실패 건 재시도)</li>
             <li>보안 고도화 단독: Rate Limit, 슬라이드 캡챠, 봇·IP 차단, XFF 스푸핑 방어</li>
             <li>수의계약 희망업체 게시판 단독 개발, 운영매뉴얼 v1.2~v1.7</li>
           </ul>
