@@ -1,0 +1,524 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>최진혁 포트폴리오 (공개용)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=Noto+Serif+KR:wght@600;800&display=swap">
+<style>
+/* Layout: 단일 읽기 컬럼(최대 1040px). 상단 요약 → 기간 타임라인 → 대표 프로젝트 4건(자산 태그 라벨 모티프) → 기타 프로젝트 → 역량·기술 */
+:root{
+  --bg:#F2F4F1; --surface:#FFFFFF; --ink:#141A17; --muted:#59625C; --line:#D6DBD3;
+  --accent:#1E4BCB; --accent-soft:#E2E8FA;
+  --new:#1E4BCB; --rebuild:#0B7F70; --maint:#7E846C;
+  --font-display:"Noto Serif KR","Nanum Myeongjo",serif;
+  --font-body:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  --font-mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;
+  --fs-xs:.75rem; --fs-sm:.875rem; --fs-md:1rem; --fs-lg:1.25rem; --fs-xl:1.75rem; --fs-2xl:2.5rem;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0F1311; --surface:#171C19; --ink:#E7EBE6; --muted:#9BA49E; --line:#2B322E;
+    --accent:#86A2FF; --accent-soft:#1C2645; --new:#86A2FF; --rebuild:#44C4B0; --maint:#AEB398;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0F1311; --surface:#171C19; --ink:#E7EBE6; --muted:#9BA49E; --line:#2B322E;
+  --accent:#86A2FF; --accent-soft:#1C2645; --new:#86A2FF; --rebuild:#44C4B0; --maint:#AEB398;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{color-scheme:light}
+body{margin:0}
+img{max-width:100%}
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:var(--fs-md);line-height:1.7;padding-inline:16px;padding-block:0;word-break:keep-all;overflow-wrap:anywhere}
+.wrap{max-width:1040px;margin:0 auto;padding-block:56px 80px;display:flex;flex-direction:column;gap:72px}
+h1,h2,h3{text-wrap:balance;margin:0}
+h2{font-family:var(--font-display);font-size:var(--fs-xl);font-weight:800;letter-spacing:-.01em}
+h3{font-size:var(--fs-lg);font-weight:700;line-height:1.4}
+p{margin:0}
+ul{margin:0;padding-left:1.1em}
+li+li{margin-top:.35em}
+.mono{font-family:var(--font-mono)}
+.eyebrow{font-family:var(--font-mono);font-size:var(--fs-xs);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.section{display:flex;flex-direction:column;gap:24px}
+.section-head{display:flex;flex-direction:column;gap:6px}
+.section-head p{color:var(--muted);max-width:65ch}
+b,strong{font-weight:700}
+.num{font-family:var(--font-mono);font-weight:500;font-variant-numeric:tabular-nums}
+
+/* Hero */
+.hero{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:40px;align-items:end}
+.hero h1{font-family:var(--font-display);font-size:var(--fs-2xl);font-weight:800;line-height:1.2;letter-spacing:-.02em}
+.hero .role{font-size:var(--fs-lg);font-weight:600;margin-top:10px}
+.hero .lead{margin-top:18px;color:var(--muted);max-width:60ch}
+.stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-top:2px solid var(--ink)}
+.stat{padding:14px 4px;border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:2px}
+.stat:nth-child(odd){border-right:1px solid var(--line);padding-right:12px}
+.stat:nth-child(even){padding-left:14px}
+.stat .v{font-family:var(--font-mono);font-size:var(--fs-xl);font-weight:500;font-variant-numeric:tabular-nums;line-height:1.2}
+.stat .k{font-size:var(--fs-sm);color:var(--muted)}
+
+/* Legend / type chips */
+.legend{display:flex;flex-wrap:wrap;gap:16px;font-size:var(--fs-sm);color:var(--muted)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.sw{width:12px;height:12px;border-radius:2px;display:inline-block}
+.t-new{--c:var(--new)} .t-rebuild{--c:var(--rebuild)} .t-maint{--c:var(--maint)}
+.sw{background:var(--c)}
+.type{display:inline-flex;align-items:center;gap:6px;font-size:var(--fs-xs);font-weight:600;color:var(--c);border:1px solid var(--c);border-radius:999px;padding:1px 10px;white-space:nowrap}
+
+/* Timeline */
+.tl-scroll{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:6px}
+.tl{min-width:1000px;display:grid;grid-template-columns:150px repeat(35,minmax(0,1fr));font-size:var(--fs-sm);padding:12px 16px 16px}
+.tl .yr{font-family:var(--font-mono);font-size:var(--fs-xs);color:var(--muted);padding-bottom:2px;border-left:1px solid var(--line);padding-left:4px}
+.tl .mo{font-family:var(--font-mono);font-size:var(--fs-xs);color:var(--muted);text-align:center;border-bottom:1px solid var(--line);padding-bottom:6px;font-variant-numeric:tabular-nums}
+.tl .lbl{padding:7px 10px 7px 0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;border-bottom:1px dashed var(--line)}
+.tl .cell{border-bottom:1px dashed var(--line);position:relative}
+.tl .bar{align-self:center;height:14px;border-radius:2px;background:var(--c);position:relative;margin:0 1px}
+.tl .bar span{position:absolute;left:calc(100% + 6px);top:50%;transform:translateY(-50%);font-family:var(--font-mono);font-size:var(--fs-xs);color:var(--muted);white-space:nowrap}
+.tl .bar.right span{left:auto;right:6px;color:var(--surface);font-weight:500}
+
+/* Featured project = asset tag label */
+.projects{display:flex;flex-direction:column;gap:40px}
+.proj{background:var(--surface);border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.tag{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px;align-items:center;padding:14px 24px;border-bottom:1px dashed var(--line);font-family:var(--font-mono);font-size:var(--fs-xs);color:var(--muted);letter-spacing:.04em}
+.tag .epc{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.barcode{width:132px;height:22px;background:repeating-linear-gradient(90deg,var(--ink) 0 2px,transparent 2px 4px,var(--ink) 4px 5px,transparent 5px 8px,var(--ink) 8px 11px,transparent 11px 12px,var(--ink) 12px 13px,transparent 13px 16px);opacity:.75}
+.proj-body{padding:24px;display:flex;flex-direction:column;gap:22px}
+.proj-title{display:flex;flex-direction:column;gap:8px}
+.proj-title .client{font-size:var(--fs-sm);color:var(--muted)}
+.meta{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;font-size:var(--fs-sm)}
+.meta .mono{color:var(--muted)}
+.summary{max-width:70ch}
+.cols{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:28px}
+.cols>*{min-width:0}
+.blk-title{font-size:var(--fs-xs);font-family:var(--font-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.wins li::marker{color:var(--accent)}
+.cases{display:flex;flex-direction:column;gap:14px}
+.case{border-left:2px solid var(--accent);padding-left:14px}
+.case .q{font-weight:600}
+.case dl{margin:6px 0 0;display:grid;grid-template-columns:auto minmax(0,1fr);gap:2px 10px;font-size:var(--fs-sm)}
+.case dt{font-family:var(--font-mono);color:var(--muted);font-size:var(--fs-xs);padding-top:3px}
+.case dd{margin:0}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-family:var(--font-mono);font-size:var(--fs-xs);background:var(--accent-soft);color:var(--ink);border-radius:3px;padding:2px 8px}
+
+/* Other projects */
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:20px 22px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.card h3{font-size:var(--fs-md)}
+.card ul{font-size:var(--fs-sm)}
+.mini{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--line)}
+.mini>div{padding:16px 16px 4px 0;display:flex;flex-direction:column;gap:6px;font-size:var(--fs-sm);min-width:0}
+.mini>div+div{padding-left:16px;border-left:1px solid var(--line)}
+.mini h3{font-size:var(--fs-sm)}
+
+/* Capabilities */
+.caps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;border-top:2px solid var(--ink)}
+.cap{padding:18px 18px 18px 0;border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:8px;min-width:0}
+.cap:not(:nth-child(3n+1)){padding-left:18px;border-left:1px solid var(--line)}
+.cap h3{font-size:var(--fs-md)}
+.cap p{font-size:var(--fs-sm);color:var(--muted)}
+.cap .ev{font-size:var(--fs-sm)}
+
+.skills{display:grid;grid-template-columns:140px minmax(0,1fr);gap:12px 20px;align-items:baseline}
+.skills dt{font-size:var(--fs-sm);font-weight:600}
+.skills dd{margin:0}
+.foot{font-size:var(--fs-sm);color:var(--muted);border-top:1px solid var(--line);padding-top:20px;max-width:75ch}
+
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+@media (max-width:820px){
+  .hero{grid-template-columns:1fr;gap:28px}
+  .cols{grid-template-columns:1fr}
+  .grid2{grid-template-columns:1fr}
+  .caps{grid-template-columns:1fr}
+  .cap,.cap:not(:nth-child(3n+1)){padding:16px 0;border-left:0}
+  .mini{grid-template-columns:1fr}
+  .mini>div+div{padding-left:0;border-left:0;border-top:1px solid var(--line)}
+  .skills{grid-template-columns:1fr;gap:4px}
+  .skills dd{margin-bottom:10px}
+}
+@media (max-width:480px){
+  .hero h1{font-size:2rem}
+  .proj-body{padding:18px}
+  .tag{padding:12px 18px}
+  .barcode{width:72px}
+  .wrap{padding-block:36px 56px;gap:56px}
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="hero">
+    <div>
+      <div class="eyebrow">Portfolio · 2023.12 – 2026.10</div>
+      <h1>최진혁</h1>
+      <p class="role">공공·금융기관 RFID 자산관리 시스템 백엔드 개발자</p>
+      <p class="lead">이주데이타에 입사한 2023년 12월부터 13개 기관, 15개 시스템의 구축과 유지보수를 맡았습니다. 전자정부프레임워크와 Spring Boot로 웹 시스템을 만들고, RFID 발행기와 PDA, SAP·기관 원장·공공 OpenAPI와의 연계를 직접 다룹니다. 장애는 로그와 패킷, 데이터 전수 대조로 원인을 밝힌 뒤 고칩니다.</p>
+    </div>
+    <div class="stats" aria-label="요약 수치">
+      <div class="stat"><span class="v">15</span><span class="k">수행 시스템 (13개 기관)</span></div>
+      <div class="stat"><span class="v">≈770</span><span class="k">본인 커밋 (입사 후)</span></div>
+      <div class="stat"><span class="v">5</span><span class="k">신규 구축 참여</span></div>
+      <div class="stat"><span class="v">100%</span><span class="k">KR* 재구축 단독 수행</span></div>
+    </div>
+  </header>
+
+  <section class="section" aria-labelledby="tl-h">
+    <div class="section-head">
+      <div class="eyebrow">Timeline</div>
+      <h2 id="tl-h">프로젝트 수행 기간</h2>
+      <p>각 저장소에서 본인 커밋이 처음과 마지막으로 남은 달을 기준으로 그렸습니다. 막대 옆 숫자는 본인 커밋 수입니다(마포문화재○은 git 이력이 없는 DB 이관 작업).</p>
+    </div>
+    <div class="legend">
+      <span class="t-new"><i class="sw"></i>신규 구축</span>
+      <span class="t-rebuild"><i class="sw"></i>재구축·고도화</span>
+      <span class="t-maint"><i class="sw"></i>유지보수</span>
+    </div>
+    <div class="tl-scroll"><div class="tl" id="timeline" role="img" aria-label="2023년 12월부터 2026년 10월까지 프로젝트별 수행 기간"></div></div>
+  </section>
+
+  <section class="section" aria-labelledby="fp-h">
+    <div class="section-head">
+      <div class="eyebrow">Featured</div>
+      <h2 id="fp-h">대표 프로젝트</h2>
+      <p>규모와 역할 비중이 큰 네 건입니다. 성과는 무엇을 했는지, 문제 해결은 원인을 어떻게 찾았는지 중심으로 정리했습니다.</p>
+    </div>
+
+    <div class="projects">
+
+      <!-- KR* -->
+      <article class="proj">
+        <div class="tag"><span class="epc">ASSET-TAG · KR* · 2025.04–2026.09 · EPC 30140000000000000000000A</span><span class="barcode" aria-hidden="true"></span></div>
+        <div class="proj-body">
+          <div class="proj-title">
+            <span class="client">한국거래○ · 경영정보시스템 재구축 사업</span>
+            <h3>RFID 자산관리시스템 재구축 및 SAP 연계 재설계</h3>
+            <div class="meta"><span class="type t-rebuild">AS-IS 유지보수 → 재구축 단독 수행</span><span class="mono">2025.04 – 2026.09</span><span class="mono">재구축 커밋 87 / 87 · AS-IS 7</span></div>
+          </div>
+          <p class="summary">기존 운영 소스를 eGovFrame 4.2, JDK 17, Tomcat 9로 옮기고, SAP RFC 미들웨어에 의존하던 연계를 REST·SFTP·HR DB·OA 네 채널의 직접 연계로 다시 설계했습니다. 개발부터 고객 협의, 취약점 점검 대응, 운영자 매뉴얼까지 혼자 맡았습니다.</p>
+          <div class="cols">
+            <div>
+              <div class="blk-title">주요 성과</div>
+              <ul class="wins">
+                <li>SAP RFC 미들웨어를 없애 WAS 2대·WAR 2개를 <b>1대·1개로 통합</b></li>
+                <li>SAP 자산변경 REST 연계(배열 단일 POST), SFTP 일배치 47컬럼 MERGE, HR DB 부서 동기화, OA 전산물품 수신 API 신설</li>
+                <li>ERP 전자결재와 이어지는 <b>불용처리 흐름 신설</b> (요청 → 결재 → 결과 조회 배치)</li>
+                <li>SAP 송신이 실패하면 RFID에도 반영하지 않도록 네 가지 변경 경로의 정합성 원칙을 통일</li>
+                <li>웹 취약점 본점검·재감사 대응: SQL 인젝션 <span class="num">58+21</span>건 조치, 엔드포인트 <span class="num">443</span>개 권한 점검, 정렬값 <span class="num">1,222</span>건 회귀 비교</li>
+                <li>연계 요청·응답 원문 DB 적재 화면, Log4j2 링버퍼 + SSE 실시간 로그 뷰어</li>
+                <li>운영자 매뉴얼 v2.5, 인터페이스 AS-IS/To-Be 대조서 작성</li>
+                <li>재구축 전 AS-IS 시스템 유지보수(2025.04~): 엑셀 다운로드 템플릿 전환과 한글 깨짐(문자셋) 조치, 자산번호 검색 개선, 중복 자산·오래된 이력 정리 기능</li>
+              </ul>
+            </div>
+            <div>
+              <div class="blk-title">문제 해결</div>
+              <div class="cases">
+                <div class="case"><p class="q">이력 테이블 580만 행 누적</p><dl><dt>원인</dt><dd>SFTP 파일에 없는 컬럼이 비교 키에 들어가 모든 행이 변경으로 판정됨</dd><dt>조치</dt><dd>비교 키 정리, 신규·수정·동일·실패 4분류 집계</dd></dl></div>
+                <div class="case"><p class="q">개발계 게시판 전면 오류</p><dl><dt>원인</dt><dd>기관 APM 에이전트가 구버전 jsoup을 상위 클래스로더에 올려 충돌</dd><dt>조치</dt><dd>jsoup 패키지를 자체 이름으로 relocate, 재생성 스크립트 포함</dd></dl></div>
+                <div class="case"><p class="q">Oracle CHAR 패딩으로 INSERT 0건·PK 위반</p><dl><dt>조치</dt><dd>임시 TRIM 25곳을 되돌리고 DB 자료형을 정리해 근본 해결</dd></dl></div>
+                <div class="case"><p class="q">WAR 166.9MB</p><dl><dt>조치</dt><dd>한 번도 로드되지 않던 웹폰트 36MB 제거 → <span class="num">141.4MB (−15.3%)</span></dd></dl></div>
+              </div>
+            </div>
+          </div>
+          <div class="chips"><span class="chip">Java 17</span><span class="chip">eGovFrame 4.2</span><span class="chip">Spring 5.3</span><span class="chip">MyBatis</span><span class="chip">Oracle RAC</span><span class="chip">Tomcat 9</span><span class="chip">Quartz</span><span class="chip">JSch SFTP</span><span class="chip">SAP API Gateway</span><span class="chip">Log4j2 · SSE</span></div>
+        </div>
+      </article>
+
+      <!-- KOSH* -->
+      <article class="proj">
+        <div class="tag"><span class="epc">ASSET-TAG · KOSH* · 2026.07–2026.10 · EPC 30140000000000000000000B</span><span class="barcode" aria-hidden="true"></span></div>
+        <div class="proj-body">
+          <div class="proj-title">
+            <span class="client">한국산업안전보건공○</span>
+            <h3>RFID 자산관리시스템 신규 구축 (Spring Boot + React)</h3>
+            <div class="meta"><span class="type t-new">신규 구축 · 4인 팀</span><span class="mono">2026.07 – 2026.10</span><span class="mono">커밋 74 (36%) · 추가 코드 약 51%</span></div>
+          </div>
+          <p class="summary">저장소 생성, 웹과 PDA 앱 통합, 배포 구성부터 시작했습니다. 공단 통합인증 연계, RFID 발행, 감가상각, 감사로그처럼 기관 고유 요구가 걸린 영역을 주로 맡았고 프린트 에이전트·인증 시뮬레이터는 혼자 만들었습니다.</p>
+          <div class="cols">
+            <div>
+              <div class="blk-title">주요 성과</div>
+              <ul class="wins">
+                <li><b>공단 통합인증(OAUTH) SSO 연계</b>: 제공 jar가 Java 7·javax 기반이라 Boot 3에 올릴 수 없어 인터페이스 계약을 자체 구현. 토큰은 60초 1회용 코드로 교환해 URL에 남기지 않음. 인증서버 시뮬레이터와 모의 포털로 검증 환경 구축</li>
+                <li><b>발행기 3종 통합</b>(Toshiba·Godex·Zebra): 0.1mm 논리좌표와 EPC 96비트 규칙 통일, 서버에서 라벨 비트맵을 렌더링해 기종별 글꼴 차이 제거, 기관이 화면에서 라벨 레이아웃 구성</li>
+                <li><b>로컬 프린트 에이전트 단독 개발</b>: 외부 의존성 없는 JDK 21 + JNA로 Windows USB 프린터와 직접 양방향 통신 (스풀러·드라이버 우회)</li>
+                <li>감가상각 Oracle 프로시저를 Java 계산 엔진으로 옮기며 원본 계산 오류 3건 교정</li>
+                <li>감사로그: 변경 엔드포인트 <span class="num">123</span>개 전수 점검, 분류 불가 <span class="num">57 → 0</span>건</li>
+                <li>시스템점검일지 28개 항목 자동 점검, HTML/PDF 보고서</li>
+                <li>Oracle 전환 후 성능: 자산보유현황 <span class="num">9.1s → 0.26s</span>, 자산취득 <span class="num">4.2s → 0.18s</span></li>
+                <li>경로 조작·저장형 XSS·JWT 기본키 결함 조치, 비밀번호 SHA-256 → BCrypt 전환</li>
+              </ul>
+            </div>
+            <div>
+              <div class="blk-title">문제 해결</div>
+              <div class="cases">
+                <div class="case"><p class="q">재물조사 기초자료가 59건만 생성</p><dl><dt>원인</dt><dd>Oracle <span class="mono">(+)</span> 외부조인이 이식 과정에서 INNER JOIN이 됨</dd><dt>결과</dt><dd>LEFT JOIN 복원으로 <span class="num">23,237</span>건 정상 생성, 같은 유형 10곳 추가 교정</dd></dl></div>
+                <div class="case"><p class="q">Godex USB 발행이 한 장씩 번갈아 실패</p><dl><dt>원인</dt><dd>버퍼에 남은 이전 응답 문자열을 상태값으로 읽음</dd><dt>조치</dt><dd>두 자리 상태 코드가 나올 때까지 응답을 건너뛰도록 수정</dd></dl></div>
+                <div class="case"><p class="q">USB 분리 상태인데 발행 성공으로 표시</p><dl><dt>원인</dt><dd>인쇄 큐가 남아 연결된 것으로 판단</dd><dt>조치</dt><dd>실제 연결된 USB 프린터 장치와 포트를 대조</dd></dl></div>
+              </div>
+            </div>
+          </div>
+          <div class="chips"><span class="chip">Java 21</span><span class="chip">Spring Boot 3.5</span><span class="chip">eGovFrame 5.0</span><span class="chip">MyBatis</span><span class="chip">JWT</span><span class="chip">React 18</span><span class="chip">TypeScript</span><span class="chip">Vite</span><span class="chip">Ant Design</span><span class="chip">Oracle · PostgreSQL</span><span class="chip">Docker Compose</span><span class="chip">Nginx</span><span class="chip">JNA</span><span class="chip">Android</span></div>
+        </div>
+      </article>
+
+      <!-- KAER* -->
+      <article class="proj">
+        <div class="tag"><span class="epc">ASSET-TAG · KAER* · 2025.11–2026.10 · EPC 30140000000000000000000C</span><span class="barcode" aria-hidden="true"></span></div>
+        <div class="proj-body">
+          <div class="proj-title">
+            <span class="client">한국원자력연구○</span>
+            <h3>RFID 자산관리시스템 신규 구축 및 안정화</h3>
+            <div class="meta"><span class="type t-new">신규 구축 · WEB 백엔드 담당</span><span class="mono">2025.11 – 2026.10</span><span class="mono">커밋 105 (22%)</span></div>
+          </div>
+          <p class="summary">자산 약 8만 개, 사진 최대 16만 장 규모입니다. 사내 솔루션을 MariaDB 환경으로 이식하고 기관 자산원장(MOA*, Oracle)과 연동했으며, 발행기 3종과 태블릿 재물조사 동기화를 안정화했습니다.</p>
+          <div class="cols">
+            <div>
+              <div class="blk-title">주요 성과</div>
+              <ul class="wins">
+                <li>Oracle용 매퍼를 MySQL로 이식하고 메뉴별 조회 쿼리 튜닝</li>
+                <li>Zebra ZT410 신규 지원: 도시바 명령을 ZPL로 변환하고 EPC를 비트 단위까지 일치시킴</li>
+                <li>MOA* 동기화 재구성: 3단계 동기화, 변경 감지, 건 단위 실패 추적 테이블, 삭제자산 동기화 설계</li>
+                <li>재물조사 결과동기화 개선: 결과 캐싱, 사진 사전 압축, 야간 증분 배치, 3-상태 원자적 선점으로 중복 적용 차단. 조사 1건 <span class="num">72.1MB → 30.2MB (−58%)</span></li>
+                <li>소스코드 보안취약점 약 <span class="num">270</span>건 조치</li>
+                <li>엑셀 다운로드를 비동기 + 진행률 방식으로 전환 (<span class="num">71</span>개 파일)</li>
+              </ul>
+            </div>
+            <div>
+              <div class="blk-title">문제 해결</div>
+              <div class="cases">
+                <div class="case"><p class="q">도시바 연속 발행 시 역방향 급지·라벨 누락</p><dl><dt>원인</dt><dd>패킷 캡처와 로그 대조로 명령이 아니라 발행 간격이 원인임을 확인</dd><dt>결과</dt><dd>대기 시간과 상태 재확인 루프 조정, 실발급 <span class="num">10/10</span> 정상</dd></dl></div>
+                <div class="case"><p class="q">Godex 메탈 태그 인코딩 실패</p><dl><dt>원인</dt><dd>"23.0" 파싱 예외로 출력 파워 0 적용, 소켓 재사용 단절, 라벨당 9초 대기 루프</dd><dt>조치</dt><dd>원인별로 수정하고 3기종 라벨 레이아웃을 맞춤</dd></dl></div>
+                <div class="case"><p class="q">MOA* 자동 동기화가 매번 실패</p><dl><dt>원인</dt><dd>배치가 존재하지 않는 매퍼를 호출</dd><dt>조치</dt><dd>수동 동기화와 같은 로직으로 교체</dd></dl></div>
+              </div>
+            </div>
+          </div>
+          <div class="chips"><span class="chip">Java 21</span><span class="chip">eGovFrame 4.2</span><span class="chip">Spring 6.1</span><span class="chip">MyBatis</span><span class="chip">MariaDB</span><span class="chip">Oracle (MOA*)</span><span class="chip">SQLite</span><span class="chip">Quartz</span><span class="chip">Tomcat</span><span class="chip">TOSHIBA · Zebra · Godex</span></div>
+        </div>
+      </article>
+
+      <!-- Songpa -->
+      <article class="proj">
+        <div class="tag"><span class="epc">ASSET-TAG · SONGP* · 2025.08–2026.10 · EPC 30140000000000000000000D</span><span class="barcode" aria-hidden="true"></span></div>
+        <div class="proj-body">
+          <div class="proj-title">
+            <span class="client">송파구○ · bid.songp*.go.kr</span>
+            <h3>계약정보공개시스템 고도화 (내부망 연계 + 대국민 포털)</h3>
+            <div class="meta"><span class="type t-rebuild">고도화 · 유지보수</span><span class="mono">2025.08 – 2026.10</span><span class="mono">커밋 161 (외부망 80% · 내부망 100% · AS-IS 9)</span></div>
+          </div>
+          <p class="summary">행정망에서 e호조+ API로 계약·대금 데이터를 모아 계약관리 Oracle과 외부망 포털로 넘기는 망분리 연계, 그리고 그 데이터를 공개하는 포털을 함께 맡았습니다.</p>
+          <div class="cols">
+            <div>
+              <div class="blk-title">주요 성과</div>
+              <ul class="wins">
+                <li>AS-IS 내·외부망 소스 고도화 착수(SVN), 이후 eGov 2.6 → 4.2, iBATIS → MyBatis 전환</li>
+                <li>망 간 연계 재설계: SHA-256 해시로 바뀐 행만 감지하고, Outbox 패턴(재시도·백오프)으로 전송</li>
+                <li>수의계약 희망업체 게시판 단독 개발 (HTTP 환경용 클라이언트 SHA-256 + 일회용 Nonce 인증)</li>
+                <li>보안 고도화 단독 수행: Rate Limit, 슬라이드 캡챠, 봇·IP 차단, XFF 스푸핑 방어, 관리자 보안 패널, 레거시 관리자 경로 <span class="num">68</span>개 차단, HTTPS 전환</li>
+                <li>정적 요청 <span class="num">43 → 27</span>건: 앞단 장비의 IP당 동시 연결 제한 때문에 45초 걸리던 강력 새로고침 해소</li>
+                <li>나라장터 OpenAPI 수집에 재시도와 구간별 예외 격리 적용, 5개년 재적재</li>
+                <li>운영매뉴얼 v1.2~v1.7, 배포 체크리스트, 감사 소명서 작성</li>
+              </ul>
+            </div>
+            <div>
+              <div class="blk-title">문제 해결</div>
+              <div class="cases">
+                <div class="case"><p class="q">연계 배치 무한 대기</p><dl><dt>원인</dt><dd>타임아웃이 없어 한 번 멈추면 Quartz 이후 실행이 모두 정지</dd><dt>조치</dt><dd>API·DB·전송 3곳에 타임아웃, 연속 5회 실패 시 테이블 단위 차단</dd></dl></div>
+                <div class="case"><p class="q">감사 지적: 2023 보건소 계약 미공개</p><dl><dt>원인</dt><dd>수집 기간 조건 버그로 <span class="num">474</span>건 미수집, <span class="num">2,079</span>건 미갱신</dd><dt>결과</dt><dd>연도별 재수집 기능 추가, 나라장터 대조 미공개 <span class="num">124 → 41</span>건</dd></dl></div>
+                <div class="case"><p class="q">Oracle 적재 실패</p><dl><dt>원인</dt><dd>로그를 근거로 운영 서버 JDBC 드라이버 누락을 규명</dd><dt>조치</dt><dd>비멱등 INSERT 테이블 30개를 확인하고 재적재 금지 원칙 수립</dd></dl></div>
+              </div>
+            </div>
+          </div>
+          <div class="chips"><span class="chip">Java 7 / 8</span><span class="chip">eGovFrame 2.6 → 4.2</span><span class="chip">Spring</span><span class="chip">MyBatis · iBATIS</span><span class="chip">MySQL 8</span><span class="chip">Oracle</span><span class="chip">Quartz</span><span class="chip">Tomcat · Nginx</span><span class="chip">data.go.kr OpenAPI</span></div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="op-h">
+    <div class="section-head">
+      <div class="eyebrow">More projects</div>
+      <h2 id="op-h">그 밖의 프로젝트</h2>
+    </div>
+    <div class="grid2">
+      <div class="card">
+        <div class="eyebrow">대구공공시설관리공○</div>
+        <h3>RFID 자산관리시스템 신규 구축 · 유지보수 · Spring Boot 전환</h3>
+        <div class="meta"><span class="type t-new">신규 구축 → 유지보수</span><span class="mono">2024.12 – 2026.04 · 커밋 124 (팀 내 최다)</span></div>
+        <ul>
+          <li>구축(2024.12 ~ 2025.03): 엑셀 일괄등록 채번 충돌 해결, 부서 사용·미사용 규칙 정비(20개 파일), 고객 교육 지적사항 반영과 불용처분취소 기능 신규 개발 후 오픈</li>
+          <li>내구연한초과물품 조회 <span class="num">30초 이상 → 1초 이내</span></li>
+          <li>태그 라이팅 실패 시 3회 재시도 후 미발급 유지, 도시바 발급 지연 <span class="num">1200 → 500ms</span></li>
+          <li>RFID 자산번호와 기관 자산번호 분리를 전 메뉴·태그·PDA에 반영</li>
+          <li>PDA 재물조사 이미지 동기화(SQLite BLOB), 재물조사 대시보드 신규</li>
+          <li>비동기 엑셀 다운로드 공통 모듈과 이식 가이드 작성 (이후 KAER* 등에 확산)</li>
+          <li>중복 로그인 감지·강제 로그아웃, 5회 실패 시 5분 잠금</li>
+          <li>Spring Boot 3.5 + React 18 전환판에서 업무 화면·팝업 약 1.7만 라인과 배포 스크립트(Nginx·systemd) 작성</li>
+        </ul>
+        <div class="chips"><span class="chip">eGovFrame 4.2</span><span class="chip">Oracle</span><span class="chip">JSP</span><span class="chip">Spring Boot 3.5</span><span class="chip">React 18</span><span class="chip">PostgreSQL</span></div>
+      </div>
+      <div class="card">
+        <div class="eyebrow">AIA생○</div>
+        <h3>RFID 자산관리·반출입관리 유지보수 (Azure 클라우드)</h3>
+        <div class="meta"><span class="type t-maint">유지보수</span><span class="mono">2025.02 – 2026.08 · 커밋 34 (44%)</span></div>
+        <ul>
+          <li>Azure PostgreSQL 일시 장애 대비 DB 재시도: AOP 기반, 5회 지수 백오프(누적 75초), 기존 DAO 코드 무수정</li>
+          <li>라이선스 검증 모듈 설계: RSA-2048 서명, 호스트·만료 검증, 시계 되돌림 감지, 제품별(자산관리/반출입) 분리. 검증 오류가 서비스 중단으로 번지지 않게 설계</li>
+          <li>JDK 8 → 17 운영 이관 런북 작성</li>
+          <li>재물조정 일괄 변경, 결과동기화 시 정상 수신 자산 보호, 엑셀 화면 47개 일괄 개선</li>
+        </ul>
+        <div class="chips"><span class="chip">eGovFrame 4.2</span><span class="chip">JDK 17</span><span class="chip">Azure PostgreSQL</span><span class="chip">spring-retry · AOP</span><span class="chip">Tomcat 9</span></div>
+      </div>
+      <div class="card">
+        <div class="eyebrow">한국과학기술연구○</div>
+        <h3>RFID 자산관리·모바일 검수 시스템 유지보수</h3>
+        <div class="meta"><span class="type t-maint">유지보수 · 웹/DB 담당</span><span class="mono">2025.05 – 2026.09 · 커밋 24</span></div>
+        <ul>
+          <li>DB 트리거로 변경을 감지하는 두레이 SMTP 자동 메일 발송 구축</li>
+          <li>MIS 연계 이력·실패 테이블 신설, 화면에 동기화 상태 배지 표시</li>
+          <li>깨진 검수 증빙 <span class="num">401</span>건의 원인을 MIS 수집 스크립트 결함으로 규명, 아이폰 HEIC 대응용 ffmpeg 8.1.2 정적 빌드 도입</li>
+          <li>운영 서버 <span class="num">615</span>개 파일과 저장소를 전수 대조해 누락 수정 2건 회수, 파일 단위 배포 원칙 수립</li>
+        </ul>
+        <div class="chips"><span class="chip">eGovFrame</span><span class="chip">iBATIS</span><span class="chip">Oracle 프로시저·트리거</span><span class="chip">Tomcat 9</span><span class="chip">Node.js</span><span class="chip">ffmpeg</span></div>
+      </div>
+      <div class="card">
+        <div class="eyebrow">서울시립대학○</div>
+        <h3>RFID 물품관리시스템 신규 구축</h3>
+        <div class="meta"><span class="type t-new">신규 구축 · 2인 팀</span><span class="mono">2025.04 – 2025.11 · 커밋 51 (55%, 최다)</span></div>
+        <ul>
+          <li>화면 기반 교체: jQuery 3.6, AX5 Grid → TOAST UI Grid, 달력 → Litepicker</li>
+          <li>Godex 태그 발급·테스트 발급, 통계, 사용자·권한, 메인 대시보드 차트 4종</li>
+          <li>폐쇄망과 기관 DB 링크 환경 대응 (인증 XSD 로컬화, 계층 쿼리 재작성)</li>
+          <li>오류 상세 화면 노출 차단, 미사용 코드 4,264줄 정리</li>
+        </ul>
+        <div class="chips"><span class="chip">eGovFrame 4.2</span><span class="chip">Java 17</span><span class="chip">Oracle DB Link</span><span class="chip">TOAST UI Grid</span></div>
+      </div>
+      <div class="card">
+        <div class="eyebrow">숭실대학○</div>
+        <h3>RFID 자산관리시스템(MariaDB) 안정화 · 유지보수</h3>
+        <div class="meta"><span class="type t-maint">구축 후 안정화 · 유지보수</span><span class="mono">2024.01 – 2025.04 · 커밋 82 (26%)</span></div>
+        <ul>
+          <li>WEB·USB 방식 태그 발행 개선: 한글/영문 폭 기준 글자수 제한, 라이팅 오류 시 3회 재시도 후 미발급 유지</li>
+          <li>램테크놀러지 발행기 연동 화면과 모듈 신규 구성</li>
+          <li>설정을 개발·테스트·운영 서버별로 분리해 배포 시 DB 연결이 자동 선택되도록 정리</li>
+          <li>엑셀 다운로드 템플릿 방식 전환, 업로드 한도 <span class="num">5,000 → 15,000</span>건, 코드 존재·중복 검증</li>
+          <li>PDA 자료파일 생성 쿼리 수정과 인덱스 추가, 서브쿼리를 JOIN으로 바꿔 조회 단축</li>
+          <li>대규모 리비전 배포 후 전 메뉴(취득~통계) 오류 일괄 수정</li>
+        </ul>
+        <div class="chips"><span class="chip">eGovFrame 2.7</span><span class="chip">iBATIS</span><span class="chip">MariaDB</span><span class="chip">jXLS</span><span class="chip">Godex</span></div>
+      </div>
+      <div class="card">
+        <div class="eyebrow">한국보건의료연구○ · 백석예술대학○</div>
+        <h3>RFID 물품관리시스템 유지보수</h3>
+        <div class="meta"><span class="type t-maint">유지보수</span><span class="mono">2024.05 – 2025.10 · 커밋 16 + 2</span></div>
+        <ul>
+          <li>컨트롤러마다 하드코딩되어 있던 엑셀 출력을 공통 클래스와 템플릿 방식으로 일원화, 템플릿 <span class="num">37</span>개 추가</li>
+          <li>자산 엑셀 업로드 검증 개선, 불용·반출입 조회 오류 수정</li>
+          <li>WAS 보안취약점 조치 (공통 에러페이지, 환경별 설정 분리)</li>
+          <li>백석예술○: Postek 발행기 여백 설정이 실제 인쇄 명령에 반영되도록 재작성, 말줄임 판정 오류 수정</li>
+        </ul>
+        <div class="chips"><span class="chip">eGovFrame 2.7</span><span class="chip">iBATIS</span><span class="chip">Oracle</span><span class="chip">jXLS</span><span class="chip">Postek</span></div>
+      </div>
+      <div class="card">
+        <div class="eyebrow">사내 제품 · 현대건○ 수요</div>
+        <h3>PAM 수동 재물조사 태블릿 앱 신규 개발</h3>
+        <div class="meta"><span class="type t-new">신규 개발 · 단독</span><span class="mono">2026.10 · 커밋 3 / 3</span></div>
+        <ul>
+          <li>KAER* 태블릿 앱에서 RFID 리더·로그인·서버 연동을 걷어내고, 서버 없이 파일로 주고받는 수동 재물조사 앱으로 재구성</li>
+          <li>PC 도구(Python): 기관 자산 실사표 엑셀을 머리글 자동 탐지로 읽어 SQLite로 변환, 조사 결과를 원본 양식에 되돌려 기록</li>
+          <li>태블릿 지정 폴더 자동 인식, 자산 그리드 정렬, 조사자·수정자 이력, 사진 4장(1280px · 300KB 이하 압축)</li>
+          <li>재설치 후 사진 접근 오류(EACCES)를 막도록 저장 위치를 앱 내부 저장소로 변경, 태블릿 테스트 절차서 작성</li>
+        </ul>
+        <div class="chips"><span class="chip">Android (Java)</span><span class="chip">SQLite</span><span class="chip">Python · openpyxl</span></div>
+      </div>
+      <div class="card">
+        <div class="eyebrow">마포문화재○ · 사내 인프라</div>
+        <h3>계약관리시스템 DB 이관 및 인프라 장애 분석</h3>
+        <div class="meta"><span class="type t-maint">운영 지원</span><span class="mono">2026.06 – 2026.07</span></div>
+        <ul>
+          <li>Oracle 11g → 12c 계약관리 DB 이관(exp/imp): 작업 중 데이터 변경 차단 절차, 리허설 후 운영 적용 가이드 작성</li>
+          <li>이관 후 테이블·행·PK·인덱스 수 일치와 문자셋(KO16KSC5601) 무손실 검증</li>
+          <li>DBMS_SCHEDULER로 매일 02:00 자동 백업과 7일 보관 정책 구성</li>
+          <li>사내 VMware ESXi root 로그인 실패 장애 분석: 같은 증상의 원인이 호스트마다 다름(다른 장비의 반복 실패로 인한 계정 잠금 / 부팅 장치 손상으로 램디스크 포화)을 이벤트 로그로 규명</li>
+        </ul>
+        <div class="chips"><span class="chip">Oracle exp/imp</span><span class="chip">DBMS_SCHEDULER</span><span class="chip">Linux</span><span class="chip">VMware ESXi</span></div>
+      </div>
+    </div>
+
+  </section>
+
+  <section class="section" aria-labelledby="cap-h">
+    <div class="section-head">
+      <div class="eyebrow">Capabilities</div>
+      <h2 id="cap-h">프로젝트에서 반복해 증명한 역량</h2>
+    </div>
+    <div class="caps">
+      <div class="cap"><h3>RFID 하드웨어 연동</h3><p>Toshiba·Zebra·Godex·Postek 발행기를 TCP 소켓과 USB로 직접 제어</p><div class="ev">EPC 인코딩 통일, 패킷 캡처로 급지 오류 규명, USB 직접 통신 에이전트</div></div>
+      <div class="cap"><h3>외부 시스템 연계</h3><p>SAP, 기관 자산원장, 공공 API, SSO를 기관 환경에 맞춰 연결</p><div class="ev">SAP REST·SFTP, MOA*, e호조·나라장터, OAUTH SSO, KIS* MIS</div></div>
+      <div class="cap"><h3>데이터 정합성·장애 분석</h3><p>증상 대신 데이터를 전수 대조해 원인을 확정</p><div class="ev">이력 580만 행, 미수집 474건, 59 → 23,237건, 오염 파일 401건</div></div>
+      <div class="cap"><h3>성능 개선</h3><p>쿼리 구조, 캐싱, 요청 수를 측정하고 줄임</p><div class="ev">30s → 1s, 9.1s → 0.26s, 요청 43 → 27, 동기화 용량 −58%</div></div>
+      <div class="cap"><h3>보안</h3><p>공공기관 취약점 점검 대응과 서비스 차원의 방어 기능 구현</p><div class="ev">SQLi 79건, 시큐어코딩 약 270건, Rate Limit·캡챠, BCrypt, 감사로그</div></div>
+      <div class="cap"><h3>레거시 현대화·운영</h3><p>프레임워크 전환과 함께 운영 문서까지 남김</p><div class="ev">eGov 2.6 → 4.2, JDK 8 → 17·21, Boot 3 + React, 매뉴얼·런북</div></div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="sk-h">
+    <div class="section-head">
+      <div class="eyebrow">Stack</div>
+      <h2 id="sk-h">기술 스택</h2>
+    </div>
+    <dl class="skills">
+      <dt>Backend</dt><dd class="chips"><span class="chip">Java 7–21</span><span class="chip">eGovFrame 2.6–5.0</span><span class="chip">Spring 3–6</span><span class="chip">Spring Boot 3.5</span><span class="chip">Spring Security · JWT</span><span class="chip">MyBatis · iBATIS</span><span class="chip">Quartz</span><span class="chip">Spring Retry · AOP</span></dd>
+      <dt>Database</dt><dd class="chips"><span class="chip">Oracle (RAC, 프로시저, DB Link)</span><span class="chip">PostgreSQL (Azure)</span><span class="chip">MariaDB · MySQL</span><span class="chip">SQLite</span></dd>
+      <dt>Frontend</dt><dd class="chips"><span class="chip">React 18 · TypeScript</span><span class="chip">Vite</span><span class="chip">Ant Design</span><span class="chip">JSP · jQuery</span><span class="chip">TOAST UI Grid</span><span class="chip">Chart.js</span></dd>
+      <dt>Integration</dt><dd class="chips"><span class="chip">REST</span><span class="chip">SFTP (JSch)</span><span class="chip">SAP API Gateway</span><span class="chip">OAUTH SSO</span><span class="chip">SSE</span><span class="chip">SMTP</span><span class="chip">data.go.kr OpenAPI</span></dd>
+      <dt>Device</dt><dd class="chips"><span class="chip">TPCL · ZPL · EZPL</span><span class="chip">TCP 소켓 · USB (JNA)</span><span class="chip">Android PDA (UHF RFID)</span></dd>
+      <dt>Infra · Tools</dt><dd class="chips"><span class="chip">Tomcat 8–9</span><span class="chip">Nginx</span><span class="chip">Docker Compose</span><span class="chip">Rocky · RHEL · Windows Server</span><span class="chip">Git · SVN</span><span class="chip">Maven</span><span class="chip">Playwright</span><span class="chip">Claude Code</span></dd>
+    </dl>
+  </section>
+
+  <p class="foot">공개용 버전으로, 고객 기관명은 끝 글자를 가렸습니다. 모든 기간·커밋 수는 각 저장소의 git 이력에서 본인 계정 기준으로 집계했습니다(2026-10-12 기준, 2023년 12월 입사 이후). 성능과 건수 수치는 커밋 메시지와 저장소 내 작업 문서에 기록된 값입니다.</p>
+</div>
+
+<script>
+(function(){
+  var rows=[
+    {n:"숭실대학○",s:1,e:16,t:"maint",c:82},
+    {n:"한국보건의료연구○",s:5,e:22,t:"maint",c:16},
+    {n:"대구공공시설관리공○",s:12,e:28,t:"new",c:124},
+    {n:"AIA생○",s:14,e:32,t:"maint",c:34},
+    {n:"한국거래○",s:16,e:33,t:"rebuild",c:94},
+    {n:"서울시립대학○",s:16,e:23,t:"new",c:51},
+    {n:"KIS*",s:17,e:33,t:"maint",c:24},
+    {n:"송파○ 계약정보공개",s:20,e:34,t:"rebuild",c:161},
+    {n:"백석예술대학○",s:21,e:21,t:"maint",c:2},
+    {n:"한국원자력연구○",s:23,e:34,t:"new",c:105},
+    {n:"마포문화재○",s:30,e:30,t:"maint",c:"DB"},
+    {n:"한국산업안전보건공○",s:31,e:34,t:"new",c:74},
+    {n:"PAM 재물조사 앱",s:34,e:34,t:"new",c:3}
+  ];
+  var el=document.getElementById("timeline"); if(!el) return;
+  var N=35, h="";
+  h+='<div></div><div class="yr" style="grid-column:2 / span 1">23</div><div class="yr" style="grid-column:3 / span 12">2024</div><div class="yr" style="grid-column:15 / span 12">2025</div><div class="yr" style="grid-column:27 / span 10">2026</div>';
+  h+='<div></div>';
+  for(var i=0;i<N;i++){var m=((11+i)%12)+1;h+='<div class="mo">'+m+'</div>';}
+  rows.forEach(function(r,idx){
+    var row=idx+3;
+    h+='<div class="lbl" style="grid-row:'+row+'">'+r.n+'</div>';
+    h+='<div class="cell" style="grid-row:'+row+';grid-column:2 / span '+N+'"></div>';
+    var right=r.e>=31&&r.e-r.s>=2;
+    h+='<div class="bar t-'+r.t+(right?' right':'')+'" style="grid-row:'+row+';grid-column:'+(r.s+2)+' / '+(r.e+3)+'"><span>'+r.c+'</span></div>';
+  });
+  el.innerHTML=h;
+})();
+</script>
+</body>
+</html>
