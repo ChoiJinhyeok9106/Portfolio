@@ -1,0 +1,482 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>최진혁 포트폴리오 v2 (공개용)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap">
+<style>
+/* v2 — 대시보드형 한 장 요약: 헤더 → KPI 벤토 → Before/After 임팩트 → 타임라인 → 대표 4건 → 역량 매트릭스 → 기타·스택 */
+:root{
+  --bg:#EEF0EC; --surface:#FFFFFF; --surface-2:#F6F7F4; --ink:#121714; --muted:#5D665F; --line:#DADFD6;
+  --hero:#121714; --hero-ink:#F2F4F1; --hero-muted:#9AA39C;
+  --accent:#1E4BCB; --accent-soft:#E3E9FB; --good:#0B7F70; --good-soft:#DDF1ED;
+  --new:#1E4BCB; --rebuild:#0B7F70; --maint:#8A9076;
+  --font-body:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  --font-mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;
+  --r:10px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0D100E; --surface:#161B18; --surface-2:#1C221F; --ink:#E8ECE7; --muted:#9AA39C; --line:#2A312D;
+    --hero:#1E4BCB; --hero-ink:#F4F6FF; --hero-muted:#C3CEF5;
+    --accent:#8CA6FF; --accent-soft:#1D2747; --good:#4CC7B3; --good-soft:#123430;
+    --new:#8CA6FF; --rebuild:#4CC7B3; --maint:#B0B59C;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0D100E; --surface:#161B18; --surface-2:#1C221F; --ink:#E8ECE7; --muted:#9AA39C; --line:#2A312D;
+  --hero:#1E4BCB; --hero-ink:#F4F6FF; --hero-muted:#C3CEF5;
+  --accent:#8CA6FF; --accent-soft:#1D2747; --good:#4CC7B3; --good-soft:#123430;
+  --new:#8CA6FF; --rebuild:#4CC7B3; --maint:#B0B59C;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{color-scheme:light}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:15px;line-height:1.6;padding-inline:16px;word-break:keep-all;overflow-wrap:anywhere}
+[hidden]{display:none!important}
+h1,h2,h3,p{margin:0}
+ul{margin:0;padding-left:1.1em}
+li+li{margin-top:.25em}
+.wrap{max-width:1180px;margin:0 auto;padding-block:32px 64px;display:flex;flex-direction:column;gap:40px}
+.mono,.num{font-family:var(--font-mono);font-variant-numeric:tabular-nums}
+.eyebrow{font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.sec{display:flex;flex-direction:column;gap:16px}
+.sec-h{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;border-bottom:2px solid var(--ink);padding-bottom:8px}
+.sec-h h2{font-size:20px;font-weight:700;letter-spacing:-.01em}
+.sec-h .eyebrow{white-space:nowrap}
+.t-new{--c:var(--new)} .t-rebuild{--c:var(--rebuild)} .t-maint{--c:var(--maint)}
+.pill{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:600;color:var(--c);border:1px solid var(--c);border-radius:999px;padding:0 9px;white-space:nowrap;line-height:20px}
+.pill::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--c)}
+.chips{display:flex;flex-wrap:wrap;gap:5px}
+.chip{font-family:var(--font-mono);font-size:11px;background:var(--surface-2);border:1px solid var(--line);border-radius:4px;padding:1px 7px;white-space:nowrap}
+.legend{display:flex;flex-wrap:wrap;gap:14px;font-size:12px;color:var(--muted)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.sw{width:10px;height:10px;border-radius:2px;background:var(--c);display:inline-block}
+
+/* ===== Bento ===== */
+.bento{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:12px}
+.tile{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px 20px;min-width:0;display:flex;flex-direction:column;gap:10px}
+.hero{grid-column:span 7;grid-row:span 2;background:var(--hero);color:var(--hero-ink);border:0;padding:28px 30px;justify-content:space-between;gap:24px;position:relative;overflow:hidden}
+.hero .eyebrow{color:var(--hero-muted)}
+.hero h1{font-size:44px;font-weight:700;letter-spacing:-.03em;line-height:1.1;margin-top:10px}
+.hero .role{font-size:18px;font-weight:600;margin-top:8px}
+.hero .lead{color:var(--hero-muted);font-size:14px;max-width:52ch}
+.hero .kw{display:flex;flex-wrap:wrap;gap:6px}
+.hero .kw span{font-family:var(--font-mono);font-size:11px;border:1px solid color-mix(in srgb,var(--hero-ink) 30%,transparent);border-radius:4px;padding:2px 8px;color:var(--hero-ink)}
+.hero::after{content:"";position:absolute;right:-40px;top:-40px;width:220px;height:220px;border-radius:50%;border:28px solid color-mix(in srgb,var(--hero-ink) 7%,transparent)}
+.kpi{grid-column:span 5}
+.kpis{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;grid-column:span 5;grid-row:span 2}
+.kpis .tile{justify-content:space-between}
+.kpis .v{font-family:var(--font-mono);font-size:36px;font-weight:600;line-height:1;letter-spacing:-.02em}
+.kpis .v small{font-size:16px;color:var(--muted);font-weight:500;margin-left:2px}
+.kpis .k{font-size:13px;color:var(--muted)}
+.kpis .tile.accent{background:var(--accent-soft);border-color:transparent}
+.kpis .tile.accent .v{color:var(--accent)}
+
+.split{grid-column:span 5}
+.stack-bar{display:flex;height:28px;border-radius:6px;overflow:hidden;gap:2px}
+.stack-bar div{background:var(--c);display:flex;align-items:center;justify-content:center;color:var(--surface);font-family:var(--font-mono);font-size:12px;font-weight:600}
+.split ul{list-style:none;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;font-size:12px}
+.split li{margin:0;display:flex;flex-direction:column;gap:2px;border-top:2px solid var(--c);padding-top:6px}
+.split li b{font-size:13px}
+.split li span{color:var(--muted);font-size:11.5px;line-height:1.45}
+
+.commits{grid-column:span 7}
+.hbars{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:5px 10px;align-items:center;font-size:12.5px}
+.hbars .n{white-space:nowrap;color:var(--ink)}
+.hbars .track{height:12px;background:var(--surface-2);border-radius:3px;overflow:hidden}
+.hbars .fill{height:100%;background:var(--c);border-radius:3px}
+.hbars .c{font-family:var(--font-mono);font-size:12px;color:var(--muted);text-align:right;min-width:3ch}
+
+/* ===== Impact ===== */
+.impact{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.imp{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px 18px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.imp .what{font-size:13px;font-weight:600}
+.imp .where{font-family:var(--font-mono);font-size:10.5px;color:var(--muted);letter-spacing:.06em}
+.imp .ba{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.imp .b{font-family:var(--font-mono);font-size:14px;color:var(--muted);text-decoration:line-through;text-decoration-thickness:1px}
+.imp .arrow{color:var(--muted);font-size:13px}
+.imp .a{font-family:var(--font-mono);font-size:26px;font-weight:600;color:var(--good);line-height:1}
+.imp .meter{display:flex;flex-direction:column;gap:3px}
+.imp .meter i{display:block;height:5px;border-radius:3px;background:var(--line)}
+.imp .meter i.after{background:var(--good)}
+.imp .delta{align-self:flex-start;font-family:var(--font-mono);font-size:11px;font-weight:600;color:var(--good);background:var(--good-soft);border-radius:4px;padding:1px 7px}
+.imp.up .a{color:var(--accent)} .imp.up .meter i.after{background:var(--accent)} .imp.up .delta{color:var(--accent);background:var(--accent-soft)}
+
+/* ===== Timeline ===== */
+.tl-box{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow-x:auto}
+.tl{min-width:980px;display:grid;grid-template-columns:150px repeat(35,minmax(0,1fr));font-size:12.5px;padding:14px 18px 18px;position:relative}
+.tl .yr{font-family:var(--font-mono);font-size:11px;font-weight:600;color:var(--ink);border-left:1px solid var(--line);padding:0 0 4px 5px}
+.tl .mo{font-family:var(--font-mono);font-size:10px;color:var(--muted);text-align:center;border-bottom:1px solid var(--line);padding-bottom:5px}
+.tl .lbl{padding:6px 10px 6px 0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tl .cell{border-top:1px dashed var(--line)}
+.tl .ycut{border-left:1px solid var(--line);pointer-events:none}
+.tl .bar{align-self:center;height:18px;border-radius:9px;background:var(--c);position:relative;margin:0 1px;display:flex;align-items:center}
+.tl .bar span{position:absolute;left:calc(100% + 6px);font-family:var(--font-mono);font-size:11px;color:var(--muted);white-space:nowrap}
+.tl .bar.in span{left:auto;right:8px;color:var(--surface);font-weight:600}
+
+/* ===== Featured ===== */
+.feat{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.fp{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);display:flex;flex-direction:column;min-width:0;overflow:hidden}
+.fp-top{padding:18px 20px 14px;display:flex;flex-direction:column;gap:8px;border-top:4px solid var(--c)}
+.fp-top .row{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.fp-top .org{font-size:12.5px;color:var(--muted)}
+.fp-top h3{font-size:17px;font-weight:700;line-height:1.4}
+.fp-top .meta{font-family:var(--font-mono);font-size:11.5px;color:var(--muted);display:flex;gap:12px;flex-wrap:wrap}
+.fp-kpi{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-block:1px solid var(--line);background:var(--surface-2)}
+.fp-kpi div{padding:10px 14px;display:flex;flex-direction:column;gap:2px;min-width:0}
+.fp-kpi div+div{border-left:1px solid var(--line)}
+.fp-kpi b{font-family:var(--font-mono);font-size:17px;font-weight:600;line-height:1.2;color:var(--c)}
+.fp-kpi span{font-size:11.5px;color:var(--muted);line-height:1.35}
+.fp-body{padding:14px 20px 18px;display:flex;flex-direction:column;gap:12px;flex:1}
+.fp-body ul{font-size:13.5px}
+.fp-body li::marker{color:var(--c)}
+.fix{background:var(--surface-2);border-radius:6px;padding:10px 12px;font-size:12.5px;display:grid;grid-template-columns:auto minmax(0,1fr);gap:3px 10px}
+.fix dt{font-family:var(--font-mono);font-size:10.5px;color:var(--muted);padding-top:2px;letter-spacing:.04em}
+.fix dd{margin:0}
+.fix .q{grid-column:1 / -1;font-weight:600;font-size:12.5px}
+.fp .chips{margin-top:auto}
+
+/* ===== Matrix ===== */
+.mx-box{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow-x:auto}
+table.mx{width:100%;min-width:760px;border-collapse:collapse;font-size:12.5px}
+.mx th,.mx td{padding:8px 10px;border-bottom:1px solid var(--line);text-align:center}
+.mx thead th{font-size:11.5px;font-weight:600;color:var(--muted);vertical-align:bottom;background:var(--surface-2)}
+.mx th[scope=row]{text-align:left;font-weight:500;white-space:nowrap}
+.mx td.type{text-align:left}
+.mx tbody tr:last-child>*{border-bottom:0}
+.dot{display:inline-block;width:12px;height:12px;border-radius:50%;background:var(--accent)}
+.dot.half{background:transparent;border:2px solid var(--accent)}
+.mx tfoot td,.mx tfoot th{font-family:var(--font-mono);font-size:12px;font-weight:600;border-top:2px solid var(--ink);border-bottom:0}
+.mx-note{font-size:12px;color:var(--muted)}
+
+/* ===== Others ===== */
+.others{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.op{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--c);border-radius:var(--r);padding:14px 16px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.op .org{font-size:14px;font-weight:700}
+.op .meta{font-family:var(--font-mono);font-size:11px;color:var(--muted)}
+.op .hl{font-size:12.5px;line-height:1.5}
+.op .hl b{color:var(--c);font-family:var(--font-mono);font-weight:600}
+
+/* ===== Stack ===== */
+.stack{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.st{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;display:flex;flex-direction:column;gap:8px}
+.st h3{font-size:12px;font-family:var(--font-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.st .chip.core{background:var(--accent-soft);border-color:transparent;font-weight:600}
+
+.foot{font-size:12px;color:var(--muted);border-top:1px solid var(--line);padding-top:16px}
+
+@media (max-width:1000px){
+  .hero,.kpis,.split,.commits{grid-column:1 / -1}
+  .impact{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .others{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:720px){
+  .feat,.stack{grid-template-columns:1fr}
+  .hero{padding:24px 22px}
+  .hero h1{font-size:36px}
+  .split ul{grid-template-columns:1fr}
+}
+@media (max-width:480px){
+  .impact,.others{grid-template-columns:1fr}
+  .kpis .v{font-size:30px}
+  .fp-kpi{grid-template-columns:1fr}
+  .fp-kpi div+div{border-left:0;border-top:1px solid var(--line)}
+}
+@media print{
+  body{background:#fff;padding:0;font-size:12px}
+  .wrap{padding:0;gap:22px}
+  .tile,.imp,.fp,.op,.st,.tl-box,.mx-box{break-inside:avoid}
+  .hero{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ===== Bento overview ===== -->
+  <section class="bento" aria-label="요약">
+    <div class="tile hero">
+      <div>
+        <div class="eyebrow">Portfolio · 2023.12 – 2026.10 · 이주데이타</div>
+        <h1>최진혁</h1>
+        <p class="role">RFID 자산관리 시스템 백엔드 개발자</p>
+      </div>
+      <p class="lead">공공·금융기관 13곳의 RFID 자산관리 시스템을 구축하고 운영했습니다. 웹 백엔드부터 RFID 발행기·PDA 제어, SAP·기관 원장·공공 API 연계까지 맡고, 장애는 로그·패킷·데이터 전수 대조로 원인을 확정한 뒤 고칩니다.</p>
+      <div class="kw"><span>eGovFrame</span><span>Spring Boot</span><span>Oracle</span><span>RFID 발행기</span><span>SAP 연계</span><span>보안 취약점 조치</span></div>
+    </div>
+
+    <div class="kpis">
+      <div class="tile accent"><span class="v">15</span><span class="k">수행 시스템 · 13개 기관</span></div>
+      <div class="tile"><span class="v">≈770</span><span class="k">본인 커밋</span></div>
+      <div class="tile"><span class="v">5</span><span class="k">신규 구축 참여</span></div>
+      <div class="tile"><span class="v">35<small>개월</small></span><span class="k">재직 기간 · KR* 재구축 단독</span></div>
+    </div>
+
+    <div class="tile split">
+      <div class="eyebrow">수행 유형 · 기관 기준</div>
+      <div class="stack-bar" role="img" aria-label="신규 구축 5, 재구축·고도화 2, 유지보수 6">
+        <div class="t-new" style="flex:5">5</div>
+        <div class="t-rebuild" style="flex:2">2</div>
+        <div class="t-maint" style="flex:6">6</div>
+      </div>
+      <ul>
+        <li class="t-new"><b>신규 구축</b><span>대구공공시설관리공○, 서울시립○, 원자력○, 산업안전보건공○, PAM 앱</span></li>
+        <li class="t-rebuild"><b>재구축·고도화</b><span>한국거래○, 송파○ 계약정보공개</span></li>
+        <li class="t-maint"><b>유지보수</b><span>숭실○, AIA생○, KIS*, 보건의료○, 백석예○, 마포문화재○</span></li>
+      </ul>
+    </div>
+
+    <div class="tile commits">
+      <div class="eyebrow">기관별 본인 커밋 수</div>
+      <div class="hbars" id="hbars" role="img" aria-label="기관별 본인 커밋 수 막대그래프"></div>
+    </div>
+  </section>
+
+  <!-- ===== Impact ===== -->
+  <section class="sec" aria-labelledby="imp-h">
+    <div class="sec-h"><h2 id="imp-h">숫자로 보는 성과</h2><span class="eyebrow">Before → After</span></div>
+    <div class="impact">
+      <div class="imp"><span class="where">대구공공시설관리공○</span><span class="what">내구연한초과물품 조회</span><div class="ba"><span class="b">30s+</span><span class="arrow">→</span><span class="a">&lt;1s</span></div><div class="meter"><i style="width:100%"></i><i class="after" style="width:3.3%"></i></div><span class="delta">−97%</span></div>
+      <div class="imp"><span class="where">산업안전보건공○</span><span class="what">자산보유현황 조회</span><div class="ba"><span class="b">9.1s</span><span class="arrow">→</span><span class="a">0.26s</span></div><div class="meter"><i style="width:100%"></i><i class="after" style="width:2.9%"></i></div><span class="delta">35배 단축</span></div>
+      <div class="imp"><span class="where">원자력연구○</span><span class="what">재물조사 1건 동기화 용량</span><div class="ba"><span class="b">72.1MB</span><span class="arrow">→</span><span class="a">30.2MB</span></div><div class="meter"><i style="width:100%"></i><i class="after" style="width:41.9%"></i></div><span class="delta">−58%</span></div>
+      <div class="imp"><span class="where">한국거래○</span><span class="what">SAP 연계 운영 서버</span><div class="ba"><span class="b">WAS 2대</span><span class="arrow">→</span><span class="a">1대</span></div><div class="meter"><i style="width:100%"></i><i class="after" style="width:50%"></i></div><span class="delta">RFC 미들웨어 제거</span></div>
+      <div class="imp up"><span class="where">산업안전보건공○</span><span class="what">재물조사 기초자료 생성</span><div class="ba"><span class="b">59건</span><span class="arrow">→</span><span class="a">23,237건</span></div><div class="meter"><i style="width:.3%"></i><i class="after" style="width:100%"></i></div><span class="delta">외부조인 복원</span></div>
+      <div class="imp"><span class="where">송파구○</span><span class="what">나라장터 대조 미공개 계약</span><div class="ba"><span class="b">124건</span><span class="arrow">→</span><span class="a">41건</span></div><div class="meter"><i style="width:100%"></i><i class="after" style="width:33%"></i></div><span class="delta">감사 지적 해소</span></div>
+      <div class="imp"><span class="where">송파구○</span><span class="what">강력 새로고침 시 정적 요청</span><div class="ba"><span class="b">43건</span><span class="arrow">→</span><span class="a">27건</span></div><div class="meter"><i style="width:100%"></i><i class="after" style="width:62.8%"></i></div><span class="delta">45초 지연 해소</span></div>
+      <div class="imp"><span class="where">대구공공시설관리공○</span><span class="what">도시바 태그 발급 지연</span><div class="ba"><span class="b">1200ms</span><span class="arrow">→</span><span class="a">500ms</span></div><div class="meter"><i style="width:100%"></i><i class="after" style="width:41.7%"></i></div><span class="delta">−58%</span></div>
+    </div>
+  </section>
+
+  <!-- ===== Timeline ===== -->
+  <section class="sec" aria-labelledby="tl-h">
+    <div class="sec-h"><h2 id="tl-h">수행 기간</h2>
+      <div class="legend"><span class="t-new"><i class="sw"></i>신규 구축</span><span class="t-rebuild"><i class="sw"></i>재구축·고도화</span><span class="t-maint"><i class="sw"></i>유지보수</span></div>
+    </div>
+    <div class="tl-box"><div class="tl" id="timeline" role="img" aria-label="2023년 12월부터 2026년 10월까지 프로젝트별 수행 기간"></div></div>
+  </section>
+
+  <!-- ===== Featured ===== -->
+  <section class="sec" aria-labelledby="fp-h">
+    <div class="sec-h"><h2 id="fp-h">대표 프로젝트</h2><span class="eyebrow">Featured · 4</span></div>
+    <div class="feat">
+
+      <article class="fp t-rebuild">
+        <div class="fp-top">
+          <div class="row"><span class="org">한국거래○ · 경영정보시스템 재구축 사업</span><span class="pill">재구축 · 단독</span></div>
+          <h3>RFID 자산관리시스템 재구축 및 SAP 연계 재설계</h3>
+          <div class="meta"><span>2025.04 – 2026.09</span><span>재구축 커밋 87/87 · AS-IS 7</span></div>
+        </div>
+        <div class="fp-kpi">
+          <div><b>4채널</b><span>SAP REST·SFTP·HR DB·OA 직접 연계</span></div>
+          <div><b>79건</b><span>SQL 인젝션 조치 (본점검+재감사)</span></div>
+          <div><b>−15.3%</b><span>WAR 166.9 → 141.4MB</span></div>
+        </div>
+        <div class="fp-body">
+          <ul>
+            <li>eGovFrame 4.2 · JDK 17 이전, SAP RFC 미들웨어 제거로 WAS·WAR 통합</li>
+            <li>ERP 전자결재와 이어지는 불용처리 흐름 신설, SAP 실패 시 RFID 미반영 원칙 통일</li>
+            <li>엔드포인트 443개 권한 점검, 실시간 로그 뷰어(SSE), 운영자 매뉴얼 v2.5</li>
+          </ul>
+          <dl class="fix"><span class="q">이력 테이블 580만 행 누적</span><dt>원인</dt><dd>파일에 없는 컬럼이 비교 키에 포함돼 전 행이 변경으로 판정</dd><dt>조치</dt><dd>비교 키 정리, 신규·수정·동일·실패 4분류 집계</dd></dl>
+          <div class="chips"><span class="chip">Java 17</span><span class="chip">eGovFrame 4.2</span><span class="chip">Oracle RAC</span><span class="chip">Quartz</span><span class="chip">JSch</span><span class="chip">SAP API GW</span></div>
+        </div>
+      </article>
+
+      <article class="fp t-new">
+        <div class="fp-top">
+          <div class="row"><span class="org">한국산업안전보건공○</span><span class="pill">신규 구축 · 4인 팀</span></div>
+          <h3>RFID 자산관리시스템 신규 구축 (Spring Boot + React)</h3>
+          <div class="meta"><span>2026.07 – 2026.10</span><span>커밋 74 (36%)</span></div>
+        </div>
+        <div class="fp-kpi">
+          <div><b>3종</b><span>Toshiba·Godex·Zebra 발행기 통합</span></div>
+          <div><b>35×</b><span>자산보유현황 9.1s → 0.26s</span></div>
+          <div><b>57→0</b><span>감사로그 분류 불가 엔드포인트</span></div>
+        </div>
+        <div class="fp-body">
+          <ul>
+            <li>공단 통합인증(OAUTH) SSO를 Boot 3용으로 자체 구현, 60초 1회용 코드 교환</li>
+            <li>JDK 21 + JNA 로컬 프린트 에이전트 단독 개발 (USB 직접 양방향 통신)</li>
+            <li>감가상각 프로시저를 Java 엔진으로 이전하며 원본 계산 오류 3건 교정</li>
+          </ul>
+          <dl class="fix"><span class="q">재물조사 기초자료가 59건만 생성</span><dt>원인</dt><dd>Oracle (+) 외부조인이 이식 중 INNER JOIN으로 바뀜</dd><dt>결과</dt><dd>23,237건 정상 생성, 같은 유형 10곳 추가 교정</dd></dl>
+          <div class="chips"><span class="chip">Java 21</span><span class="chip">Spring Boot 3.5</span><span class="chip">React 18 · TS</span><span class="chip">Oracle</span><span class="chip">Docker</span><span class="chip">JNA</span></div>
+        </div>
+      </article>
+
+      <article class="fp t-new">
+        <div class="fp-top">
+          <div class="row"><span class="org">한국원자력연구○</span><span class="pill">신규 구축 · WEB 백엔드</span></div>
+          <h3>RFID 자산관리시스템 신규 구축 및 안정화</h3>
+          <div class="meta"><span>2025.11 – 2026.10</span><span>커밋 105 (22%)</span></div>
+        </div>
+        <div class="fp-kpi">
+          <div><b>8만</b><span>관리 자산 (사진 최대 16만 장)</span></div>
+          <div><b>−58%</b><span>재물조사 동기화 용량</span></div>
+          <div><b>≈270</b><span>소스코드 보안취약점 조치</span></div>
+        </div>
+        <div class="fp-body">
+          <ul>
+            <li>Oracle 매퍼를 MariaDB로 이식, 기관 자산원장(MOA*) 3단계 동기화 재구성</li>
+            <li>Zebra ZT410 신규 지원: 도시바 명령을 ZPL로 변환, EPC 비트 단위 일치</li>
+            <li>엑셀 다운로드 비동기 + 진행률 전환 (71개 파일)</li>
+          </ul>
+          <dl class="fix"><span class="q">도시바 연속 발행 시 역방향 급지·라벨 누락</span><dt>원인</dt><dd>패킷 캡처·로그 대조로 발행 간격이 원인임을 확인</dd><dt>결과</dt><dd>대기·상태 재확인 루프 조정, 실발급 10/10 정상</dd></dl>
+          <div class="chips"><span class="chip">Java 21</span><span class="chip">Spring 6.1</span><span class="chip">MariaDB</span><span class="chip">Oracle (MOA*)</span><span class="chip">SQLite</span><span class="chip">ZPL · TPCL</span></div>
+        </div>
+      </article>
+
+      <article class="fp t-rebuild">
+        <div class="fp-top">
+          <div class="row"><span class="org">송파구○ · bid.songp*.go.kr</span><span class="pill">고도화 · 유지보수</span></div>
+          <h3>계약정보공개시스템 고도화 (내부망 연계 + 대국민 포털)</h3>
+          <div class="meta"><span>2025.08 – 2026.10</span><span>커밋 161 (외부망 80% · 내부망 100%)</span></div>
+        </div>
+        <div class="fp-kpi">
+          <div><b>2.6→4.2</b><span>eGovFrame, iBATIS → MyBatis</span></div>
+          <div><b>68개</b><span>레거시 관리자 경로 차단</span></div>
+          <div><b>474건</b><span>미수집 계약 규명·재수집</span></div>
+        </div>
+        <div class="fp-body">
+          <ul>
+            <li>망 간 연계 재설계: SHA-256 변경 감지 + Outbox 패턴(재시도·백오프)</li>
+            <li>보안 고도화 단독: Rate Limit, 슬라이드 캡챠, 봇·IP 차단, XFF 스푸핑 방어</li>
+            <li>수의계약 희망업체 게시판 단독 개발, 운영매뉴얼 v1.2~v1.7</li>
+          </ul>
+          <dl class="fix"><span class="q">연계 배치 무한 대기</span><dt>원인</dt><dd>타임아웃 부재로 한 번 멈추면 Quartz 이후 실행 전부 정지</dd><dt>조치</dt><dd>API·DB·전송 3곳 타임아웃, 연속 5회 실패 시 테이블 단위 차단</dd></dl>
+          <div class="chips"><span class="chip">Java 8</span><span class="chip">eGovFrame 4.2</span><span class="chip">MySQL 8</span><span class="chip">Oracle</span><span class="chip">Quartz</span><span class="chip">OpenAPI</span></div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ===== Capability matrix ===== -->
+  <section class="sec" aria-labelledby="mx-h">
+    <div class="sec-h"><h2 id="mx-h">프로젝트 × 역량</h2><span class="eyebrow">Capability matrix</span></div>
+    <div class="mx-box"><table class="mx" id="matrix"></table></div>
+    <p class="mx-note">● 핵심 수행 &nbsp; ○ 일부 수행 · 각 프로젝트의 커밋과 작업 문서 기준</p>
+  </section>
+
+  <!-- ===== Others ===== -->
+  <section class="sec" aria-labelledby="op-h">
+    <div class="sec-h"><h2 id="op-h">그 밖의 프로젝트</h2><span class="eyebrow">More · 8</span></div>
+    <div class="others">
+      <div class="op t-new"><span class="pill">신규 구축 → 유지보수</span><span class="org">대구공공시설관리공○</span><span class="meta">2024.12 – 2026.04 · 커밋 124 (팀 최다)</span><p class="hl">구축·오픈 후 운영. 조회 <b>30s→1s</b>, 비동기 엑셀 공통 모듈(타 기관 확산), Spring Boot 3.5 + React 전환판 약 1.7만 라인</p></div>
+      <div class="op t-new"><span class="pill">신규 구축 · 2인</span><span class="org">서울시립대학○</span><span class="meta">2025.04 – 2025.11 · 커밋 51 (55%)</span><p class="hl">TOAST UI Grid 기반 화면 교체, Godex 발급, 대시보드 차트, 폐쇄망·DB 링크 대응, 미사용 코드 <b>4,264줄</b> 정리</p></div>
+      <div class="op t-maint"><span class="pill">유지보수</span><span class="org">AIA생○</span><span class="meta">2025.02 – 2026.08 · 커밋 34 (44%)</span><p class="hl">Azure PostgreSQL 장애 대비 AOP 재시도(<b>5회</b> 지수 백오프), RSA-2048 라이선스 모듈, JDK 8→17 이관 런북</p></div>
+      <div class="op t-maint"><span class="pill">유지보수</span><span class="org">KIS*</span><span class="meta">2025.05 – 2026.09 · 커밋 24</span><p class="hl">트리거 기반 자동 메일, MIS 연계 이력, 깨진 증빙 <b>401건</b> 원인 규명, 운영 서버 <b>615</b>개 파일 전수 대조</p></div>
+      <div class="op t-maint"><span class="pill">안정화 · 유지보수</span><span class="org">숭실대학○</span><span class="meta">2024.01 – 2025.04 · 커밋 82 (26%)</span><p class="hl">태그 발행 재시도, 램테크 발행기 연동, 업로드 한도 <b>5천→1.5만</b>건, PDA 쿼리 인덱스·JOIN 튜닝</p></div>
+      <div class="op t-maint"><span class="pill">유지보수</span><span class="org">보건의료○ · 백석예○</span><span class="meta">2024.05 – 2025.10 · 커밋 16 + 2</span><p class="hl">엑셀 출력 공통화(템플릿 <b>37</b>개), WAS 취약점 조치, Postek 발행기 여백 명령 재작성</p></div>
+      <div class="op t-new"><span class="pill">신규 개발 · 단독</span><span class="org">PAM 재물조사 앱</span><span class="meta">2026.10 · 커밋 3/3</span><p class="hl">서버 없는 수동 재물조사 태블릿 앱 + 엑셀↔SQLite 변환 PC 도구(Python), 사진 4장 압축 저장</p></div>
+      <div class="op t-maint"><span class="pill">운영 지원</span><span class="org">마포문화재○ · 사내</span><span class="meta">2026.06 – 2026.07</span><p class="hl">Oracle 11g→12c 이관 무손실 검증, 자동 백업 <b>7일</b> 보관, ESXi 로그인 장애 원인 분석</p></div>
+    </div>
+  </section>
+
+  <!-- ===== Stack ===== -->
+  <section class="sec" aria-labelledby="sk-h">
+    <div class="sec-h"><h2 id="sk-h">기술 스택</h2><span class="eyebrow">강조 = 주력</span></div>
+    <div class="stack">
+      <div class="st"><h3>Backend</h3><div class="chips"><span class="chip core">Java 7–21</span><span class="chip core">eGovFrame 2.6–5.0</span><span class="chip core">Spring · Boot 3.5</span><span class="chip core">MyBatis · iBATIS</span><span class="chip">Spring Security · JWT</span><span class="chip">Quartz</span><span class="chip">Spring Retry · AOP</span></div></div>
+      <div class="st"><h3>Database</h3><div class="chips"><span class="chip core">Oracle (RAC·프로시저·DB Link)</span><span class="chip">PostgreSQL (Azure)</span><span class="chip">MariaDB · MySQL</span><span class="chip">SQLite</span></div></div>
+      <div class="st"><h3>Integration</h3><div class="chips"><span class="chip core">REST</span><span class="chip core">SFTP (JSch)</span><span class="chip">SAP API Gateway</span><span class="chip">OAUTH SSO</span><span class="chip">SSE</span><span class="chip">SMTP</span><span class="chip">data.go.kr OpenAPI</span></div></div>
+      <div class="st"><h3>Device</h3><div class="chips"><span class="chip core">TPCL · ZPL · EZPL</span><span class="chip core">TCP 소켓 · USB (JNA)</span><span class="chip">Android PDA (UHF RFID)</span></div></div>
+      <div class="st"><h3>Frontend</h3><div class="chips"><span class="chip">React 18 · TypeScript</span><span class="chip">Vite</span><span class="chip">Ant Design</span><span class="chip">JSP · jQuery</span><span class="chip">TOAST UI Grid</span><span class="chip">Chart.js</span></div></div>
+      <div class="st"><h3>Infra · Tools</h3><div class="chips"><span class="chip">Tomcat 8–9</span><span class="chip">Nginx</span><span class="chip">Docker Compose</span><span class="chip">Rocky · RHEL · Windows Server</span><span class="chip">Git · SVN</span><span class="chip">Maven</span><span class="chip">Playwright</span><span class="chip">Claude Code</span></div></div>
+    </div>
+  </section>
+
+  <p class="foot">공개용 버전으로, 고객 기관명은 끝 글자를 가렸습니다. 기간·커밋 수는 각 저장소 git 이력의 본인 계정 기준(2026-10-12 집계, 2023년 12월 입사 이후)이며, 성능·건수 수치는 커밋 메시지와 저장소 내 작업 문서에 기록된 값입니다.</p>
+</div>
+
+<script>
+(function(){
+  var rows=[
+    {n:"숭실대학○",s:1,e:16,t:"maint",c:82},
+    {n:"한국보건의료연구○",s:5,e:22,t:"maint",c:16},
+    {n:"대구공공시설관리공○",s:12,e:28,t:"new",c:124},
+    {n:"AIA생○",s:14,e:32,t:"maint",c:34},
+    {n:"한국거래○",s:16,e:33,t:"rebuild",c:94},
+    {n:"서울시립대학○",s:16,e:23,t:"new",c:51},
+    {n:"KIS*",s:17,e:33,t:"maint",c:24},
+    {n:"송파○ 계약정보공개",s:20,e:34,t:"rebuild",c:161},
+    {n:"백석예술대학○",s:21,e:21,t:"maint",c:2},
+    {n:"한국원자력연구○",s:23,e:34,t:"new",c:105},
+    {n:"마포문화재○",s:30,e:30,t:"maint",c:"DB"},
+    {n:"한국산업안전보건공○",s:31,e:34,t:"new",c:74},
+    {n:"PAM 재물조사 앱",s:34,e:34,t:"new",c:3}
+  ];
+
+  /* Commit bars */
+  var hb=document.getElementById("hbars");
+  if(hb){
+    var sorted=rows.filter(function(r){return typeof r.c==="number";}).sort(function(a,b){return b.c-a.c;});
+    var max=sorted[0].c, h="";
+    sorted.forEach(function(r){
+      h+='<span class="n">'+r.n+'</span><span class="track"><span class="fill t-'+r.t+'" style="display:block;width:'+(r.c/max*100).toFixed(1)+'%"></span></span><span class="c">'+r.c+'</span>';
+    });
+    hb.innerHTML=h;
+  }
+
+  /* Timeline */
+  var el=document.getElementById("timeline");
+  if(el){
+    var N=35, t="";
+    t+='<div></div><div class="yr" style="grid-row:1;grid-column:2 / span 1">23</div><div class="yr" style="grid-row:1;grid-column:3 / span 12">2024</div><div class="yr" style="grid-row:1;grid-column:15 / span 12">2025</div><div class="yr" style="grid-row:1;grid-column:27 / span 10">2026</div>';
+    t+='<div></div>';
+    for(var i=0;i<N;i++){var m=((11+i)%12)+1;t+='<div class="mo" style="grid-row:2;grid-column:'+(i+2)+'">'+m+'</div>';}
+    rows.forEach(function(r,idx){
+      var row=idx+3;
+      t+='<div class="lbl" style="grid-row:'+row+'">'+r.n+'</div>';
+      t+='<div class="cell" style="grid-row:'+row+';grid-column:2 / span '+N+'"></div>';
+      var inside=r.e>=31&&r.e-r.s>=2;
+      t+='<div class="bar t-'+r.t+(inside?' in':'')+'" style="grid-row:'+row+';grid-column:'+(r.s+2)+' / '+(r.e+3)+'"><span>'+r.c+'</span></div>';
+    });
+    [3,15,27].forEach(function(c){t+='<div class="ycut" style="grid-row:3 / span '+rows.length+';grid-column:'+c+'"></div>';});
+    el.innerHTML=t;
+  }
+
+  /* Capability matrix: 2 = 핵심, 1 = 일부 */
+  var caps=["RFID 장비","외부 연계","정합성·장애 분석","성능","보안","현대화·전환"];
+  var mx=[
+    ["한국거래○","rebuild",       [0,2,2,1,2,2]],
+    ["한국산업안전보건공○","new", [2,2,2,2,2,2]],
+    ["한국원자력연구○","new",     [2,2,2,2,2,1]],
+    ["송파○ 계약정보공개","rebuild",[0,2,2,2,2,2]],
+    ["대구공공시설관리공○","new", [2,0,1,2,1,2]],
+    ["서울시립대학○","new",       [2,1,0,0,1,2]],
+    ["AIA생○","maint",            [0,0,2,0,2,2]],
+    ["KIS*","maint",               [0,2,2,0,0,0]],
+    ["숭실대학○","maint",         [2,0,1,2,0,1]],
+    ["보건의료○ · 백석예○","maint",[2,0,0,0,1,1]],
+    ["마포문화재○ · 사내","maint",[0,0,2,0,0,1]]
+  ];
+  var lbl={new:"신규",rebuild:"재구축",maint:"유지보수"};
+  var tb=document.getElementById("matrix");
+  if(tb){
+    var x='<thead><tr><th scope="col" style="text-align:left">프로젝트</th><th scope="col" style="text-align:left">유형</th>';
+    caps.forEach(function(c){x+='<th scope="col">'+c+'</th>';});
+    x+='</tr></thead><tbody>';
+    var tot=caps.map(function(){return 0;});
+    mx.forEach(function(r){
+      x+='<tr><th scope="row">'+r[0]+'</th><td class="type"><span class="pill t-'+r[1]+'">'+lbl[r[1]]+'</span></td>';
+      r[2].forEach(function(v,i){
+        if(v)tot[i]++;
+        x+='<td>'+(v===2?'<span class="dot" aria-label="핵심"></span>':v===1?'<span class="dot half" aria-label="일부"></span>':'')+'</td>';
+      });
+      x+='</tr>';
+    });
+    x+='</tbody><tfoot><tr><th scope="row" style="text-align:left">수행 프로젝트 수</th><td></td>';
+    tot.forEach(function(v){x+='<td>'+v+'</td>';});
+    x+='</tr></tfoot>';
+    tb.innerHTML=x;
+  }
+})();
+</script>
+</body>
+</html>
