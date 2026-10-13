@@ -161,12 +161,12 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
       <div class="eyebrow">Portfolio · 2023.12 – 2026.10</div>
       <h1>최진혁</h1>
       <p class="role">공공·금융기관 RFID 자산관리 시스템 백엔드 개발자</p>
-      <p class="lead">이주데이타에 입사한 2023년 12월부터 13개 기관, 15개 시스템의 구축과 유지보수를 맡았습니다. 전자정부프레임워크와 Spring Boot로 웹 시스템을 만들고, RFID 발행기와 PDA, SAP·기관 원장·공공 OpenAPI와의 연계를 직접 다룹니다. 장애는 로그와 패킷, 데이터 전수 대조로 원인을 밝힌 뒤 고칩니다.</p>
+      <p class="lead">이주데이타에 입사한 2023년 12월부터 13개 기관, 16개 시스템의 구축과 유지보수를 맡았고, 국가 과제로 자산관리 제품을 NCP 기반 MSA SaaS로 전환했습니다. 전자정부프레임워크와 Spring Boot로 웹 시스템을 만들고, RFID 발행기와 PDA, SAP·기관 원장·공공 OpenAPI와의 연계를 직접 다룹니다. 장애는 로그와 패킷, 데이터 전수 대조로 원인을 밝힌 뒤 고칩니다.</p>
     </div>
     <div class="stats" aria-label="요약 수치">
-      <div class="stat"><span class="v">15</span><span class="k">수행 시스템 (13개 기관)</span></div>
-      <div class="stat"><span class="v">≈770</span><span class="k">본인 커밋 (입사 후)</span></div>
-      <div class="stat"><span class="v">5</span><span class="k">신규 구축 참여</span></div>
+      <div class="stat"><span class="v">16</span><span class="k">수행 시스템 (13개 기관 + 국가 과제)</span></div>
+      <div class="stat"><span class="v">≈1,070</span><span class="k">본인 커밋 (입사 후)</span></div>
+      <div class="stat"><span class="v">6</span><span class="k">신규 구축 참여</span></div>
       <div class="stat"><span class="v">100%</span><span class="k">KR* 재구축 단독 수행</span></div>
     </div>
   </header>
@@ -189,7 +189,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
     <div class="section-head">
       <div class="eyebrow">Featured</div>
       <h2 id="fp-h">대표 프로젝트</h2>
-      <p>규모와 역할 비중이 큰 네 건입니다. 성과는 무엇을 했는지, 문제 해결은 원인을 어떻게 찾았는지 중심으로 정리했습니다.</p>
+      <p>규모와 역할 비중이 큰 다섯 건입니다. 성과는 무엇을 했는지, 문제 해결은 원인을 어떻게 찾았는지 중심으로 정리했습니다.</p>
     </div>
 
     <div class="projects">
@@ -301,6 +301,43 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
             </div>
           </div>
           <div class="chips"><span class="chip">Java 21</span><span class="chip">eGovFrame 4.2</span><span class="chip">Spring 6.1</span><span class="chip">MyBatis</span><span class="chip">MariaDB</span><span class="chip">Oracle (MOA*)</span><span class="chip">SQLite</span><span class="chip">Quartz</span><span class="chip">Tomcat</span><span class="chip">TOSHIBA · Zebra · Godex</span></div>
+        </div>
+      </article>
+
+      <!-- NIA SaaS -->
+      <article class="proj">
+        <div class="tag"><span class="epc">ASSET-TAG · NIA-SAAS · 2024.05–2024.12 · EPC 301400000000000000000005</span><span class="barcode" aria-hidden="true"></span></div>
+        <div class="proj-body">
+          <div class="proj-title">
+            <span class="client">국가 R&amp;D · NIA 공공부문 이용 SaaS 개발·검증 사업 (컨소시엄)</span>
+            <h3>설치형 RFID 자산관리시스템의 NCP 기반 MSA SaaS 전환</h3>
+            <div class="meta"><span class="type t-new">신규 구축 · 2인 개발</span><span class="mono">2024.05 – 2024.12</span><span class="mono">커밋 304 / 451 (67%)</span></div>
+          </div>
+          <p class="summary">기관마다 설치하던 자산관리 제품을 네이버클라우드(NCP 공공) 위의 SaaS로 바꾼 국가 과제입니다. 애플리케이션과 배포 파이프라인은 사원 1명과 둘이 만들었고, 쿠버네티스 클러스터·Ingress·오토스케일링은 MSP와 함께 구성했습니다. 클라우드 서비스 확인제와 K-PaaS 호환성 인증을 받았습니다.</p>
+          <div class="cols">
+            <div>
+              <div class="blk-title">주요 성과</div>
+              <ul class="wins">
+                <li><b>MSA 5개 서비스</b>(gateway · portal · user · subscribe · eam)로 분리 개발, 컨소시엄 공통 프레임워크 위에 자산관리(EAM) 모듈 이식</li>
+                <li><b>멀티테넌시</b>: 로그인 사용자의 기관 ID(<span class="mono">CORP_ID</span>)로 매퍼 12개 파일 약 220곳의 조회를 서버에서 격리</li>
+                <li><b>구독·미터링·과금</b>: 요금제별 기본료 + 자산 수 초과분 단가를 SQL 윈도 함수 한 번으로 계산, 셀프서비스 가입 흐름</li>
+                <li><b>NCP CI/CD 직접 구성</b>: SourceCommit → SourceBuild(Maven + Docker) → Container Registry → SourceDeploy 롤링 업데이트</li>
+                <li><b>DB 이중화</b>: MariaDB VM 2대 Master-Slave 복제 + Keepalived 가상 IP 전환, 백업·복구 절차</li>
+                <li>클라우드 메일 발송(Outbound Mailer) 연동</li>
+                <li><b>인증 대응</b>: 클라우드 서비스 확인제(KACI) 구성도·아키텍처 정의서·발표·HPA 시연 → <b>취득</b>, K-PaaS 호환성 시험 5개 항목 → <b>취득</b>, CSAP 간편등급 예비·본점검 발표와 질의 대응(미취득)</li>
+                <li>NIA 보고, 최종 발표, 성과지표 보고서 작성 (성과지표 80% 달성)</li>
+              </ul>
+            </div>
+            <div>
+              <div class="blk-title">공동으로 한 부분</div>
+              <div class="cases">
+                <div class="case"><p class="q">쿠버네티스 구성 (MSP와 공동)</p><dl><dt>범위</dt><dd>NKS 클러스터, Deployment·Service 매니페스트, public/private ALB Ingress, HPA(1~3 Pod, CPU 75%)</dd></dl></div>
+                <div class="case"><p class="q">네트워크·보안 기반 (공동·지원)</p><dl><dt>범위</dt><dd>VPC·서브넷 분리, Bastion·SSL VPN, 로드밸런서·DNS·인증서, 보안 관제, KISA 사전점검 조치</dd></dl></div>
+                <div class="case"><p class="q">다시 한다면</p><dl><dt>개선</dt><dd>헬스 프로브 추가, JWT 키·DB 계정을 K8s Secret으로 분리, 서비스별 DB 분리, Slave 자동 승격</dd></dl></div>
+              </div>
+            </div>
+          </div>
+          <div class="chips"><span class="chip">Java 11</span><span class="chip">Spring Boot 2.7</span><span class="chip">Spring Cloud Gateway</span><span class="chip">MyBatis</span><span class="chip">MariaDB 10.3</span><span class="chip">NCP NKS (K8s 1.28)</span><span class="chip">Docker</span><span class="chip">NCP SourceCommit·Build·Deploy</span><span class="chip">Container Registry</span><span class="chip">Keepalived</span></div>
         </div>
       </article>
 
@@ -467,7 +504,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
       <div class="cap"><h3>데이터 정합성·장애 분석</h3><p>증상 대신 데이터를 전수 대조해 원인을 확정</p><div class="ev">이력 580만 행, 미수집 474건, 59 → 23,237건, 오염 파일 401건</div></div>
       <div class="cap"><h3>성능 개선</h3><p>쿼리 구조, 캐싱, 요청 수를 측정하고 줄임</p><div class="ev">30s → 1s, 9.1s → 0.26s, 요청 43 → 27, 동기화 용량 −58%</div></div>
       <div class="cap"><h3>보안</h3><p>공공기관 취약점 점검 대응과 서비스 차원의 방어 기능 구현</p><div class="ev">SQLi 79건, 시큐어코딩 약 270건, Rate Limit·캡챠, BCrypt, 감사로그</div></div>
-      <div class="cap"><h3>레거시 현대화·운영</h3><p>프레임워크 전환과 함께 운영 문서까지 남김</p><div class="ev">eGov 2.6 → 4.2, JDK 8 → 17·21, Boot 3 + React, 매뉴얼·런북</div></div>
+      <div class="cap"><h3>레거시 현대화·운영</h3><p>프레임워크 전환과 함께 운영 문서까지 남김</p><div class="ev">설치형 → MSA SaaS(NCP), eGov 2.6 → 4.2, JDK 8 → 17·21, Boot 3 + React, 매뉴얼·런북</div></div>
     </div>
   </section>
 
@@ -482,6 +519,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
       <dt>Frontend</dt><dd class="chips"><span class="chip">React 18 · TypeScript</span><span class="chip">Vite</span><span class="chip">Ant Design</span><span class="chip">JSP · jQuery</span><span class="chip">TOAST UI Grid</span><span class="chip">Chart.js</span></dd>
       <dt>Integration</dt><dd class="chips"><span class="chip">REST</span><span class="chip">SFTP (JSch)</span><span class="chip">SAP API Gateway</span><span class="chip">OAUTH SSO</span><span class="chip">SSE</span><span class="chip">SMTP</span><span class="chip">data.go.kr OpenAPI</span></dd>
       <dt>Device</dt><dd class="chips"><span class="chip">TPCL · ZPL · EZPL</span><span class="chip">TCP 소켓 · USB (JNA)</span><span class="chip">Android PDA (UHF RFID)</span></dd>
+      <dt>Cloud</dt><dd class="chips"><span class="chip">NCP 공공 (NKS · SourceCommit/Build/Deploy · Container Registry)</span><span class="chip">Kubernetes (Deployment · Ingress · HPA)</span><span class="chip">Docker</span><span class="chip">Spring Cloud Gateway</span><span class="chip">Azure PostgreSQL</span></dd>
       <dt>Infra · Tools</dt><dd class="chips"><span class="chip">Tomcat 8–9</span><span class="chip">Nginx</span><span class="chip">Docker Compose</span><span class="chip">Rocky · RHEL · Windows Server</span><span class="chip">Git · SVN</span><span class="chip">Maven</span><span class="chip">Playwright</span><span class="chip">Claude Code</span></dd>
     </dl>
   </section>
@@ -494,6 +532,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
   var rows=[
     {n:"숭실대학○",s:1,e:16,t:"maint",c:82},
     {n:"한국보건의료연구○",s:5,e:22,t:"maint",c:16},
+    {n:"NIA 공공 SaaS (NCP)",s:5,e:12,t:"new",c:304},
     {n:"대구공공시설관리공○",s:12,e:28,t:"new",c:124},
     {n:"AIA생○",s:14,e:32,t:"maint",c:34},
     {n:"한국거래○",s:16,e:33,t:"rebuild",c:94},

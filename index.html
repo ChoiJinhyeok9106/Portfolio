@@ -173,13 +173,13 @@ li+li{margin-top:.3em}
         <h1>최진혁</h1>
         <p class="role"><em>AI가 먼저 만들고</em>, 제가 검증해 책임지는<br>1인 풀사이클 백엔드 개발자</p>
       </div>
-      <p class="lead">구현·DB·연계·유지보수·취약점 조치·문서화까지 대부분의 작업을 AI로 먼저 만들고, 저는 방향을 정하고 결과를 감독·검증·보정합니다. 이 방식으로 공공·금융기관 13곳의 RFID 자산관리 시스템을 구축·운영했고, 한 기관의 시스템 재구축을 혼자 끝냈습니다.</p>
+      <p class="lead">구현·DB·연계·유지보수·취약점 조치·문서화까지 대부분의 작업을 AI로 먼저 만들고, 저는 방향을 정하고 결과를 감독·검증·보정합니다. 이 방식으로 공공·금융기관 13곳의 RFID 자산관리 시스템을 구축·운영했고, 한 기관의 시스템 재구축을 혼자 끝냈습니다. AI를 쓰기 전인 2024년에는 국가 과제로 자산관리 제품을 NCP 기반 MSA SaaS로 전환하며 코드를 직접 작성했습니다.</p>
     </div>
     <div class="kpis">
       <div class="kpi ai"><span class="v">7<small>개 저장소</small></span><span class="k">프로젝트별 AI 작업 규칙(CLAUDE.md)을 두고 운영</span></div>
       <div class="kpi"><span class="v">100<small>%</small></span><span class="k">KR* 재구축 단독 수행 (커밋 87/87)</span></div>
-      <div class="kpi"><span class="v">15</span><span class="k">수행 시스템 · 13개 기관 · 본인 커밋 ≈770</span></div>
-      <div class="kpi"><span class="v">6<small>개 영역</small></span><span class="k">개발 · DB · 연계 · 장애 · 보안 · 문서를 한 사람이 처리</span></div>
+      <div class="kpi"><span class="v">16</span><span class="k">수행 시스템 · 13개 기관 + 국가 과제 · 본인 커밋 ≈1,070</span></div>
+      <div class="kpi"><span class="v">7<small>개 영역</small></span><span class="k">개발 · DB · 연계 · 장애 · 보안 · 문서 · 클라우드를 한 사람이 처리</span></div>
     </div>
   </section>
 
@@ -203,6 +203,8 @@ li+li{margin-top:.3em}
     <div class="sec-h"><h2 id="sc-h">AI와 함께 감당한 범위</h2><span class="eyebrow">Scope</span></div>
     <p class="sec-sub">혼자서는 시간이 모자라 보통 나눠 맡거나 생략하는 일들입니다. AI가 초안과 반복 작업을 맡아 준 덕분에 전수 점검 수준까지 끝낼 수 있었습니다.</p>
     <div class="scope">
+      <div class="sc"><div class="sc-h"><h3>클라우드·MSA</h3><span class="tag-me">AI 도입 전 · 직접 코딩</span></div><p class="big">5<small>개 서비스 · NCP 공공 · 인증 2종 취득</small></p>
+        <div class="split"><span class="tag-me">나</span><span>서비스 분리, 멀티테넌시, 구독·과금, NCP CI/CD, MariaDB 이중화, 인증 심사 발표·질의</span><span class="tag-me">공동</span><span>쿠버네티스 클러스터·Ingress·HPA는 MSP와 함께 구성</span></div></div>
       <div class="sc"><div class="sc-h"><h3>개발·구현</h3><span class="tag-me">재구축 단독</span></div><p class="big">87<small>/ 87 커밋 · KR* 재구축</small></p>
         <div class="split"><span class="tag-ai">AI</span><span>eGovFrame 4.2·JDK 17 이전 코드, SAP REST·SFTP·HR·OA 4채널 연계 구현 초안</span><span class="tag-me">나</span><span>SAP 실패 시 RFID 미반영 원칙, 불용 결재 흐름 설계, 고객 협의</span></div></div>
       <div class="sc"><div class="sc-h"><h3>DB 작업</h3><span class="tag-me">이식·튜닝</span></div><p class="big">9.1s → 0.26s<small>자산보유현황</small></p>
@@ -250,6 +252,7 @@ li+li{margin-top:.3em}
     </div>
     <div class="tl-box"><div class="tl" id="timeline" role="img" aria-label="2023년 12월부터 2026년 10월까지 프로젝트별 수행 기간"></div></div>
     <div class="projs">
+      <div class="pj t-new"><div class="pj-h"><span class="org">NIA 공공 SaaS 개발·검증 (국가 과제)</span><span class="pill">신규 구축 · 2인 · 직접 코딩</span></div><span class="meta">2024.05 – 2024.12 · 커밋 304 / 451 (67%) · AI 도입 전</span><ul><li>설치형 자산관리를 NCP 기반 MSA SaaS(5개 서비스)로 전환, 멀티테넌시·구독 과금·CI/CD·DB 이중화</li><li>클라우드 서비스 확인제·K-PaaS 호환성 취득, CSAP 본점검 대응 (쿠버네티스는 MSP와 공동)</li></ul></div>
       <div class="pj t-rebuild"><div class="pj-h"><span class="org">한국거래○</span><span class="pill">재구축 단독</span></div><span class="meta">2025.04 – 2026.09 · 커밋 94</span><ul><li>RFID 자산관리 재구축, SAP RFC 미들웨어 제거로 WAS 2대 → 1대</li><li>SAP REST·SFTP·HR DB·OA 4채널 직접 연계, 불용 전자결재 흐름 신설</li></ul></div>
       <div class="pj t-new"><div class="pj-h"><span class="org">한국산업안전보건공○</span><span class="pill">신규 구축 · 4인</span></div><span class="meta">2026.07 – 2026.10 · 커밋 74 (36%)</span><ul><li>Spring Boot 3.5 + React, 통합인증 SSO를 Boot 3용으로 자체 구현</li><li>발행기 3종 통합, JNA 로컬 프린트 에이전트 단독 개발</li></ul></div>
       <div class="pj t-new"><div class="pj-h"><span class="org">한국원자력연구○</span><span class="pill">신규 구축 · 백엔드</span></div><span class="meta">2025.11 – 2026.10 · 커밋 105</span><ul><li>자산 8만 개 규모, 자산원장(MOA*) 3단계 동기화 재구성</li><li>재물조사 동기화 용량 −58%, Zebra ZPL 신규 지원</li></ul></div>
@@ -267,6 +270,7 @@ li+li{margin-top:.3em}
       <dt>Backend</dt><dd class="chips"><span class="chip">Java 7–21</span><span class="chip">eGovFrame 2.6–5.0</span><span class="chip">Spring · Boot 3.5</span><span class="chip">MyBatis · iBATIS</span><span class="chip">Quartz</span></dd>
       <dt>Database</dt><dd class="chips"><span class="chip">Oracle</span><span class="chip">PostgreSQL</span><span class="chip">MariaDB · MySQL</span><span class="chip">SQLite</span></dd>
       <dt>연계·장비</dt><dd class="chips"><span class="chip">REST · SFTP · SSO</span><span class="chip">SAP API GW</span><span class="chip">TPCL · ZPL · EZPL</span><span class="chip">USB (JNA)</span><span class="chip">Android PDA</span></dd>
+      <dt>Cloud</dt><dd class="chips"><span class="chip">NCP NKS (Kubernetes)</span><span class="chip">NCP CI/CD · Registry</span><span class="chip">Docker</span><span class="chip">Spring Cloud Gateway</span><span class="chip">Azure PostgreSQL</span></dd>
       <dt>Front · Infra</dt><dd class="chips"><span class="chip">React · TypeScript</span><span class="chip">JSP · jQuery</span><span class="chip">Tomcat · Nginx</span><span class="chip">Docker Compose</span><span class="chip">Git · SVN</span></dd>
     </dl>
   </section>
@@ -279,6 +283,7 @@ li+li{margin-top:.3em}
   var rows=[
     {n:"숭실대학○",s:1,e:16,t:"maint",c:82},
     {n:"한국보건의료연구○",s:5,e:22,t:"maint",c:16},
+    {n:"NIA 공공 SaaS (NCP)",s:5,e:12,t:"new",c:304},
     {n:"대구공공시설관리공○",s:12,e:28,t:"new",c:124},
     {n:"AIA생○",s:14,e:32,t:"maint",c:34},
     {n:"한국거래○",s:16,e:33,t:"rebuild",c:94},

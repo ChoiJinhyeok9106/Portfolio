@@ -206,26 +206,26 @@ table.mx{width:100%;min-width:760px;border-collapse:collapse;font-size:12.5px}
         <h1>최진혁</h1>
         <p class="role">RFID 자산관리 시스템 백엔드 개발자</p>
       </div>
-      <p class="lead">공공·금융기관 13곳의 RFID 자산관리 시스템을 구축하고 운영했습니다. 웹 백엔드부터 RFID 발행기·PDA 제어, SAP·기관 원장·공공 API 연계까지 맡고, 장애는 로그·패킷·데이터 전수 대조로 원인을 확정한 뒤 고칩니다.</p>
+      <p class="lead">공공·금융기관 13곳의 RFID 자산관리 시스템을 구축·운영하고, 국가 과제로 이를 NCP 기반 MSA SaaS로 전환했습니다. 웹 백엔드부터 RFID 발행기·PDA 제어, SAP·기관 원장·공공 API 연계까지 맡고, 장애는 로그·패킷·데이터 전수 대조로 원인을 확정한 뒤 고칩니다.</p>
       <div class="kw"><span>eGovFrame</span><span>Spring Boot</span><span>Oracle</span><span>RFID 발행기</span><span>SAP 연계</span><span>보안 취약점 조치</span></div>
     </div>
 
     <div class="kpis">
-      <div class="tile accent"><span class="v">15</span><span class="k">수행 시스템 · 13개 기관</span></div>
-      <div class="tile"><span class="v">≈770</span><span class="k">본인 커밋</span></div>
-      <div class="tile"><span class="v">5</span><span class="k">신규 구축 참여</span></div>
+      <div class="tile accent"><span class="v">16</span><span class="k">수행 시스템 · 13개 기관 + 국가 과제</span></div>
+      <div class="tile"><span class="v">≈1,070</span><span class="k">본인 커밋</span></div>
+      <div class="tile"><span class="v">6</span><span class="k">신규 구축 참여</span></div>
       <div class="tile"><span class="v">35<small>개월</small></span><span class="k">재직 기간 · KR* 재구축 단독</span></div>
     </div>
 
     <div class="tile split">
       <div class="eyebrow">수행 유형 · 기관 기준</div>
-      <div class="stack-bar" role="img" aria-label="신규 구축 5, 재구축·고도화 2, 유지보수 6">
-        <div class="t-new" style="flex:5">5</div>
+      <div class="stack-bar" role="img" aria-label="신규 구축 6, 재구축·고도화 2, 유지보수 6">
+        <div class="t-new" style="flex:6">6</div>
         <div class="t-rebuild" style="flex:2">2</div>
         <div class="t-maint" style="flex:6">6</div>
       </div>
       <ul>
-        <li class="t-new"><b>신규 구축</b><span>대구공공시설관리공○, 서울시립○, 원자력○, 산업안전보건공○, PAM 앱</span></li>
+        <li class="t-new"><b>신규 구축</b><span>NIA 공공 SaaS, 대구공공시설관리공○, 서울시립○, 원자력○, 산업안전보건공○, PAM 앱</span></li>
         <li class="t-rebuild"><b>재구축·고도화</b><span>한국거래○, 송파○ 계약정보공개</span></li>
         <li class="t-maint"><b>유지보수</b><span>숭실○, AIA생○, KIS*, 보건의료○, 백석예○, 마포문화재○</span></li>
       </ul>
@@ -262,8 +262,31 @@ table.mx{width:100%;min-width:760px;border-collapse:collapse;font-size:12.5px}
 
   <!-- ===== Featured ===== -->
   <section class="sec" aria-labelledby="fp-h">
-    <div class="sec-h"><h2 id="fp-h">대표 프로젝트</h2><span class="eyebrow">Featured · 4</span></div>
+    <div class="sec-h"><h2 id="fp-h">대표 프로젝트</h2><span class="eyebrow">Featured · 5</span></div>
     <div class="feat">
+
+      <article class="fp t-new" style="grid-column:1 / -1">
+        <div class="fp-top">
+          <div class="row"><span class="org">국가 R&amp;D · NIA 공공부문 이용 SaaS 개발·검증 사업</span><span class="pill">신규 구축 · 2인 개발</span></div>
+          <h3>설치형 RFID 자산관리시스템의 NCP 기반 MSA SaaS 전환</h3>
+          <div class="meta"><span>2024.05 – 2024.12</span><span>커밋 304 / 451 (67%)</span></div>
+        </div>
+        <div class="fp-kpi">
+          <div><b>5개</b><span>MSA 서비스 (gateway·portal·user·subscribe·eam)</span></div>
+          <div><b>2종 취득</b><span>클라우드 서비스 확인제 · K-PaaS 호환성</span></div>
+          <div><b>≈220곳</b><span>기관 ID 기반 테넌트 격리 쿼리</span></div>
+        </div>
+        <div class="fp-body">
+          <ul>
+            <li>서비스 분리·개발, 멀티테넌시, 구독·미터링·과금(SQL 윈도 함수), 셀프서비스 가입</li>
+            <li>NCP CI/CD 직접 구성: SourceCommit → SourceBuild(Maven + Docker) → Registry → SourceDeploy 롤링 업데이트</li>
+            <li>MariaDB 2대 복제 + Keepalived 이중화, 메일 발송 연동, NIA 보고·최종 발표·성과지표 보고서</li>
+            <li>쿠버네티스 클러스터·Ingress·HPA(1~3 Pod)는 MSP와 공동 구성, CSAP 간편등급은 본점검 대응 후 미취득</li>
+          </ul>
+          <div class="chips"><span class="chip">Java 11</span><span class="chip">Spring Boot 2.7</span><span class="chip">Spring Cloud Gateway</span><span class="chip">MariaDB</span><span class="chip">NCP NKS</span><span class="chip">Docker</span><span class="chip">NCP CI/CD</span></div>
+        </div>
+      </article>
+
 
       <article class="fp t-rebuild">
         <div class="fp-top">
@@ -387,7 +410,7 @@ table.mx{width:100%;min-width:760px;border-collapse:collapse;font-size:12.5px}
       <div class="st"><h3>Integration</h3><div class="chips"><span class="chip core">REST</span><span class="chip core">SFTP (JSch)</span><span class="chip">SAP API Gateway</span><span class="chip">OAUTH SSO</span><span class="chip">SSE</span><span class="chip">SMTP</span><span class="chip">data.go.kr OpenAPI</span></div></div>
       <div class="st"><h3>Device</h3><div class="chips"><span class="chip core">TPCL · ZPL · EZPL</span><span class="chip core">TCP 소켓 · USB (JNA)</span><span class="chip">Android PDA (UHF RFID)</span></div></div>
       <div class="st"><h3>Frontend</h3><div class="chips"><span class="chip">React 18 · TypeScript</span><span class="chip">Vite</span><span class="chip">Ant Design</span><span class="chip">JSP · jQuery</span><span class="chip">TOAST UI Grid</span><span class="chip">Chart.js</span></div></div>
-      <div class="st"><h3>Infra · Tools</h3><div class="chips"><span class="chip">Tomcat 8–9</span><span class="chip">Nginx</span><span class="chip">Docker Compose</span><span class="chip">Rocky · RHEL · Windows Server</span><span class="chip">Git · SVN</span><span class="chip">Maven</span><span class="chip">Playwright</span><span class="chip">Claude Code</span></div></div>
+      <div class="st"><h3>Infra · Cloud</h3><div class="chips"><span class="chip core">NCP NKS (Kubernetes)</span><span class="chip core">NCP CI/CD · Registry</span><span class="chip">Docker</span><span class="chip">Spring Cloud Gateway</span><span class="chip">Azure PostgreSQL</span><span class="chip">Tomcat 8–9</span><span class="chip">Nginx</span><span class="chip">Docker Compose</span><span class="chip">Rocky · RHEL · Windows Server</span><span class="chip">Git · SVN</span><span class="chip">Maven</span><span class="chip">Playwright</span><span class="chip">Claude Code</span></div></div>
     </div>
   </section>
 
@@ -399,6 +422,7 @@ table.mx{width:100%;min-width:760px;border-collapse:collapse;font-size:12.5px}
   var rows=[
     {n:"숭실대학○",s:1,e:16,t:"maint",c:82},
     {n:"한국보건의료연구○",s:5,e:22,t:"maint",c:16},
+    {n:"NIA 공공 SaaS (NCP)",s:5,e:12,t:"new",c:304},
     {n:"대구공공시설관리공○",s:12,e:28,t:"new",c:124},
     {n:"AIA생○",s:14,e:32,t:"maint",c:34},
     {n:"한국거래○",s:16,e:33,t:"rebuild",c:94},
@@ -442,19 +466,20 @@ table.mx{width:100%;min-width:760px;border-collapse:collapse;font-size:12.5px}
   }
 
   /* Capability matrix: 2 = 핵심, 1 = 일부 */
-  var caps=["RFID 장비","외부 연계","정합성·장애 분석","성능","보안","현대화·전환"];
+  var caps=["RFID 장비","외부 연계","정합성·장애 분석","성능","보안","현대화·전환","클라우드·MSA"];
   var mx=[
-    ["한국거래○","rebuild",       [0,2,2,1,2,2]],
-    ["한국산업안전보건공○","new", [2,2,2,2,2,2]],
-    ["한국원자력연구○","new",     [2,2,2,2,2,1]],
-    ["송파○ 계약정보공개","rebuild",[0,2,2,2,2,2]],
-    ["대구공공시설관리공○","new", [2,0,1,2,1,2]],
-    ["서울시립대학○","new",       [2,1,0,0,1,2]],
-    ["AIA생○","maint",            [0,0,2,0,2,2]],
-    ["KIS*","maint",               [0,2,2,0,0,0]],
-    ["숭실대학○","maint",         [2,0,1,2,0,1]],
-    ["보건의료○ · 백석예○","maint",[2,0,0,0,1,1]],
-    ["마포문화재○ · 사내","maint",[0,0,2,0,0,1]]
+    ["NIA 공공 SaaS (NCP)","new",  [0,0,0,0,1,2,2]],
+    ["한국거래○","rebuild",       [0,2,2,1,2,2,0]],
+    ["한국산업안전보건공○","new", [2,2,2,2,2,2,1]],
+    ["한국원자력연구○","new",     [2,2,2,2,2,1,0]],
+    ["송파○ 계약정보공개","rebuild",[0,2,2,2,2,2,0]],
+    ["대구공공시설관리공○","new", [2,0,1,2,1,2,0]],
+    ["서울시립대학○","new",       [2,1,0,0,1,2,0]],
+    ["AIA생○","maint",            [0,0,2,0,2,2,1]],
+    ["KIS*","maint",               [0,2,2,0,0,0,0]],
+    ["숭실대학○","maint",         [2,0,1,2,0,1,0]],
+    ["보건의료○ · 백석예○","maint",[2,0,0,0,1,1,0]],
+    ["마포문화재○ · 사내","maint",[0,0,2,0,0,1,0]]
   ];
   var lbl={new:"신규",rebuild:"재구축",maint:"유지보수"};
   var tb=document.getElementById("matrix");
