@@ -204,7 +204,7 @@ li+li{margin-top:.3em}
     <p class="sec-sub">혼자서는 시간이 모자라 보통 나눠 맡거나 생략하는 일들입니다. AI가 초안과 반복 작업을 맡아 준 덕분에 전수 점검 수준까지 끝낼 수 있었습니다.</p>
     <div class="scope">
       <div class="sc"><div class="sc-h"><h3>클라우드·MSA</h3><span class="tag-me">AI 도입 전 · 직접 코딩</span></div><p class="big">5<small>개 서비스 · NCP 공공 · 인증 2종 취득</small></p>
-        <div class="split"><span class="tag-me">나</span><span>서비스 분리, 멀티테넌시, 구독·과금, NCP CI/CD, MariaDB 이중화, 인증 심사 발표·질의</span><span class="tag-me">공동</span><span>쿠버네티스 클러스터·Ingress·HPA는 MSP와 함께 구성</span></div></div>
+        <div class="split"><span class="tag-me">나</span><span>서비스 분리, 멀티테넌시, 구독·과금, NCP CI/CD, MariaDB 이중화, CSAP 본점검 발표·질의(지적 3,434건 분석·1,178건 조치)</span><span class="tag-me">공동</span><span>쿠버네티스 클러스터·Ingress·HPA는 MSP와 함께 구성</span></div></div>
       <div class="sc"><div class="sc-h"><h3>개발·구현</h3><span class="tag-me">재구축 단독</span></div><p class="big">87<small>/ 87 커밋 · KR* 재구축</small></p>
         <div class="split"><span class="tag-ai">AI</span><span>eGovFrame 4.2·JDK 17 이전 코드, SAP REST·SFTP·HR·OA 4채널 연계 구현 초안</span><span class="tag-me">나</span><span>SAP 실패 시 RFID 미반영 원칙, 불용 결재 흐름 설계, 고객 협의</span></div></div>
       <div class="sc"><div class="sc-h"><h3>DB 작업</h3><span class="tag-me">이식·튜닝</span></div><p class="big">9.1s → 0.26s<small>자산보유현황</small></p>
@@ -225,6 +225,7 @@ li+li{margin-top:.3em}
     <div class="sec-h"><h2 id="ct-h">검증 단계에서 잡아낸 것</h2><span class="eyebrow">Human in the loop</span></div>
     <p class="sec-sub">"돌아간다"에서 멈추지 않고 결과 데이터를 끝까지 대조해서 찾은 문제들입니다. AI 활용의 가치는 결국 이 단계에서 갈린다고 생각합니다.</p>
     <div class="catch">
+      <div class="ct" style="grid-column:1 / -1"><span class="where">NIA 공공 SaaS · CSAP 간편등급 본점검 · 대응 주도</span><h3>지적 3,434건을 원인별로 묶어 보니, 대부분은 소수의 근본 원인이었음</h3><p>CVE 1,261건 중 82%(1,035건)는 지원이 끝난 베이스 이미지 1개의 취약점이 서비스 5개에 복제된 것이었고, 소스코드 2,096건 중 61%는 빌드 산출물 사본(target/)이 점검 범위에 들어간 것이었습니다. 실제 서비스 소스 지적은 466건(22%)이고 대부분 디버그 출력·빈 catch였습니다. 발표·질의 대응을 맡아 원인 단위로 설명하고 2인 팀으로 1,178건을 조치했습니다. 이후 회사가 SaaS 사업을 접기로 하며 신청을 철회했습니다.</p><span class="res">상위 10개 항목 = 전체의 80% · 1,178건 조치</span></div>
       <div class="ct"><span class="where">한국산업안전보건공○ · DB 이식</span><h3>재물조사 기초자료가 59건만 생성</h3><p>Oracle (+) 외부조인이 이식 과정에서 INNER JOIN으로 바뀐 것을 확인하고, 같은 유형 10곳을 추가로 찾아 교정</p><span class="res">59 → 23,237건</span></div>
       <div class="ct"><span class="where">한국산업안전보건공○ · 로직 이전</span><h3>감가상각 원본 프로시저의 계산 오류</h3><p>프로시저를 Java 엔진으로 옮긴 결과를 원본과 대조하다가, 원본 쪽의 계산 오류 3건을 발견해 교정</p><span class="res">원본 오류 3건 교정</span></div>
       <div class="ct"><span class="where">한국거래○ · SFTP 연계</span><h3>이력 테이블 580만 행 누적</h3><p>AS-IS의 매일 전건 적재 구조와, 파일에 없는 컬럼이 비교 키에 들어가 모든 행이 변경으로 판정되던 To-Be 결함을 규명, 4분류 집계로 재발 감시</p><span class="res">비교 키 정리</span></div>
@@ -252,7 +253,7 @@ li+li{margin-top:.3em}
     </div>
     <div class="tl-box"><div class="tl" id="timeline" role="img" aria-label="2023년 12월부터 2026년 10월까지 프로젝트별 수행 기간"></div></div>
     <div class="projs">
-      <div class="pj t-new"><div class="pj-h"><span class="org">NIA 공공 SaaS 개발·검증 (국가 과제)</span><span class="pill">신규 구축 · 2인 · 직접 코딩</span></div><span class="meta">2024.05 – 2024.12 · 커밋 304 / 451 (67%) · AI 도입 전</span><ul><li>설치형 자산관리를 NCP 기반 MSA SaaS(5개 서비스)로 전환, 멀티테넌시·구독 과금·CI/CD·DB 이중화</li><li>클라우드 서비스 확인제·K-PaaS 호환성 취득, CSAP 본점검 대응 (쿠버네티스는 MSP와 공동)</li></ul></div>
+      <div class="pj t-new"><div class="pj-h"><span class="org">NIA 공공 SaaS 개발·검증 (국가 과제)</span><span class="pill">신규 구축 · 2인 · 직접 코딩</span></div><span class="meta">2024.05 – 2024.12 · 커밋 304 / 451 (67%) · AI 도입 전</span><ul><li>설치형 자산관리를 NCP 기반 MSA SaaS(5개 서비스)로 전환, 멀티테넌시·구독 과금·CI/CD·DB 이중화</li><li>클라우드 서비스 확인제·K-PaaS 호환성 취득, CSAP 본점검 대응 주도(3,434건 분석·1,178건 조치, 사업 철수로 철회). 쿠버네티스는 MSP와 공동</li></ul></div>
       <div class="pj t-rebuild"><div class="pj-h"><span class="org">한국거래○</span><span class="pill">재구축 단독</span></div><span class="meta">2025.04 – 2026.09 · 커밋 94</span><ul><li>RFID 자산관리 재구축, SAP RFC 미들웨어 제거로 WAS 2대 → 1대</li><li>SAP REST·SFTP·HR DB·OA 4채널 직접 연계, 불용 전자결재 흐름 신설</li></ul></div>
       <div class="pj t-new"><div class="pj-h"><span class="org">한국산업안전보건공○</span><span class="pill">신규 구축 · 4인</span></div><span class="meta">2026.07 – 2026.10 · 커밋 74 (36%)</span><ul><li>Spring Boot 3.5 + React, 통합인증 SSO를 Boot 3용으로 자체 구현</li><li>발행기 3종 통합, JNA 로컬 프린트 에이전트 단독 개발</li></ul></div>
       <div class="pj t-new"><div class="pj-h"><span class="org">한국원자력연구○</span><span class="pill">신규 구축 · 백엔드</span></div><span class="meta">2025.11 – 2026.10 · 커밋 105</span><ul><li>자산 8만 개 규모, 자산원장(MOA*) 3단계 동기화 재구성</li><li>재물조사 동기화 용량 −58%, Zebra ZPL 신규 지원</li></ul></div>

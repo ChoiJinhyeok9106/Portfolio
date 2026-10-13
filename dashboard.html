@@ -248,7 +248,7 @@ table.mx{width:100%;min-width:760px;border-collapse:collapse;font-size:12.5px}
       <div class="imp up"><span class="where">산업안전보건공○</span><span class="what">재물조사 기초자료 생성</span><div class="ba"><span class="b">59건</span><span class="arrow">→</span><span class="a">23,237건</span></div><div class="meter"><i style="width:.3%"></i><i class="after" style="width:100%"></i></div><span class="delta">외부조인 복원</span></div>
       <div class="imp"><span class="where">송파구○</span><span class="what">나라장터 대조 미공개 계약</span><div class="ba"><span class="b">124건</span><span class="arrow">→</span><span class="a">41건</span></div><div class="meter"><i style="width:100%"></i><i class="after" style="width:33%"></i></div><span class="delta">감사 지적 해소</span></div>
       <div class="imp"><span class="where">송파구○</span><span class="what">강력 새로고침 시 정적 요청</span><div class="ba"><span class="b">43건</span><span class="arrow">→</span><span class="a">27건</span></div><div class="meter"><i style="width:100%"></i><i class="after" style="width:62.8%"></i></div><span class="delta">45초 지연 해소</span></div>
-      <div class="imp"><span class="where">대구공공시설관리공○</span><span class="what">도시바 태그 발급 지연</span><div class="ba"><span class="b">1200ms</span><span class="arrow">→</span><span class="a">500ms</span></div><div class="meter"><i style="width:100%"></i><i class="after" style="width:41.7%"></i></div><span class="delta">−58%</span></div>
+      <div class="imp"><span class="where">NIA 공공 SaaS · CSAP 본점검</span><span class="what">소스코드 보안 지적 (2인 팀 조치)</span><div class="ba"><span class="b">2,096건</span><span class="arrow">→</span><span class="a">923건</span></div><div class="meter"><i style="width:100%"></i><i class="after" style="width:44%"></i></div><span class="delta">1,173건 조치</span></div>
     </div>
   </section>
 
@@ -273,7 +273,7 @@ table.mx{width:100%;min-width:760px;border-collapse:collapse;font-size:12.5px}
         </div>
         <div class="fp-kpi">
           <div><b>5개</b><span>MSA 서비스 (gateway·portal·user·subscribe·eam)</span></div>
-          <div><b>2종 취득</b><span>클라우드 서비스 확인제 · K-PaaS 호환성</span></div>
+          <div><b>2종 취득</b><span>클라우드 서비스 확인제 · K-PaaS 호환성 (+ CSAP 본점검 대응)</span></div>
           <div><b>≈220곳</b><span>기관 ID 기반 테넌트 격리 쿼리</span></div>
         </div>
         <div class="fp-body">
@@ -281,7 +281,8 @@ table.mx{width:100%;min-width:760px;border-collapse:collapse;font-size:12.5px}
             <li>서비스 분리·개발, 멀티테넌시, 구독·미터링·과금(SQL 윈도 함수), 셀프서비스 가입</li>
             <li>NCP CI/CD 직접 구성: SourceCommit → SourceBuild(Maven + Docker) → Registry → SourceDeploy 롤링 업데이트</li>
             <li>MariaDB 2대 복제 + Keepalived 이중화, 메일 발송 연동, NIA 보고·최종 발표·성과지표 보고서</li>
-            <li>쿠버네티스 클러스터·Ingress·HPA(1~3 Pod)는 MSP와 공동 구성, CSAP 간편등급은 본점검 대응 후 미취득</li>
+            <li><b>CSAP 간편등급 본점검 대응 주도</b>: 발표·질의 대응, 지적 3,434건을 원인별로 묶어 1,178건 조치. CVE의 82%는 지원 종료 베이스 이미지 1개, 소스 지적의 61%는 빌드 산출물 사본임을 규명. 이후 회사의 SaaS 사업 철수로 신청 철회</li>
+            <li>쿠버네티스 클러스터·Ingress·HPA(1~3 Pod)는 MSP와 공동 구성</li>
           </ul>
           <div class="chips"><span class="chip">Java 11</span><span class="chip">Spring Boot 2.7</span><span class="chip">Spring Cloud Gateway</span><span class="chip">MariaDB</span><span class="chip">NCP NKS</span><span class="chip">Docker</span><span class="chip">NCP CI/CD</span></div>
         </div>
